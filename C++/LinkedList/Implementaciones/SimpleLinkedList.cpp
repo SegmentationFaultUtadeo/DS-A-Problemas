@@ -24,6 +24,39 @@ class LinkedList {
             head = nullptr;
         }
 
+        Node* get_head() {
+            return head;
+        }
+
+        
+        bool is_empty() {
+            return head == nullptr;
+        }
+
+        void insert_at_head(int val) {
+            Node* newNode = new Node(val);
+            newNode->next = head;
+            head = newNode;
+        }
+
+        void delete_at_head() {
+            if (is_empty()) return;
+            Node* toDelete = head;
+            head = head->next;
+            delete toDelete;
+        }
+
+        bool search(int val) {
+            Node* temp = head;
+            while (temp != nullptr) {
+                if (temp->data == val)
+                    return true;
+                temp = temp->next;
+            }
+            return false;
+        }
+
+
         void insert(int val){
             Node* newNode = new Node(val);
 
@@ -34,7 +67,7 @@ class LinkedList {
                 while (temp -> next != nullptr)
                     temp = temp -> next;
 
-                temp -> next = newNode;
+                temp -> next = newNode; 
             }
         }
 

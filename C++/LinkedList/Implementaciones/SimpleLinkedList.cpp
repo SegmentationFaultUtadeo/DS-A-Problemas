@@ -71,6 +71,8 @@ class LinkedList {
             }
         }
 
+        
+
         void display(){
             Node* temp = head;
 
@@ -81,28 +83,44 @@ class LinkedList {
             cout << "NULL" << endl;
         }
 
-        void deleteValue(int val){
-            if (head == nullptr) return;
+
+        void insert_at_tail(int val){
+            if (head == nullptr) insert_at_head(val);
+            else{
+                Node* newNode = new Node(val);
+                Node* temp = head;
+                while (temp -> next != nullptr)
+                    temp = temp -> next;
+                temp -> next = newNode;
+            }
+        }
+
+        void delete_element(int val){
+            if (head == nullptr){
+                cout << "Lista vacia" << endl;
+                return;
+            }
 
             if (head -> data == val){
                 Node* toDelete = head;
                 head = head -> next;
                 delete toDelete;
                 return;
+            }else{
+                Node* i = head;
+                while(i -> next != nullptr && i -> next -> data != val)
+                    i = i -> next;
+
+                if (i -> next == nullptr){
+                    cout << "No encontrado" << endl;
+                    return;
+                }else{
+                    Node* toDelete = i -> next;
+                    i -> next = i -> next -> next;
+                    delete toDelete;
+                }
             }
-
-            Node* temp = head;
-            while (temp -> next != nullptr && temp -> next -> data != val)
-                temp = temp -> next;
-
-            if (temp -> next == nullptr){
-                cout << "No encontrado" << endl;
-                return;
-            }
-
-            Node* toDelete = temp -> next;
-            temp -> next = temp -> next -> next;
-            delete toDelete;
+            
         }
 
 };
@@ -117,12 +135,30 @@ int main() {
     cout << "Lista enlazada: " ;
     list.display();
 
-    cout << "Eliminar elemento 20" << endl;
-    list.deleteValue(20);
-
     cout << "Lista actualizada: ";
+    list.insert_at_tail(50);
+
+    cout << "Lista enlazada: ";
     list.display();
 
+    cout << "Eliminar el valor 20";
+    list.delete_element(20);
+
+    cout << "Lista enlazada: ";
+    list.display();
+
+    cout << "Eliminar elemento que no existe: ";
+    list.delete_element(1000);
+
+    cout << "Lista impresa: ";
+    list.display();
+
+    cout << "Eliminar el ultimo elemento" << endl; 
+    list.delete_element(50);
+
+    cout << "Lista impresa: " << endl;
+    list.display();
+    
     return 0;
 }
 

@@ -200,3 +200,19 @@ NULL <---  |  1  | <---  |  2  |  <--- |  3  |  <--- |  4  |  <--- |  5  |  NULL
 
 ## Solución puesta en LeetCode
     
+``` c++
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* iterator = head;
+        ListNode* prev = nullptr;
+        while (iterator != nullptr){
+            ListNode* sig = iterator -> next;
+            iterator -> next = prev;
+            prev = iterator;
+            iterator = sig;
+        }
+        return prev;
+    }
+};
+```

@@ -188,6 +188,138 @@ NULL <---  |  1  | <---  |  2  |  <--- |  3  |  <--- |  4  |  <--- |  5  |  NULL
 ### Código
 
 
+El código que está presente en el `.cpp` empieza utilizando algunas convenciones para el código e importando librerías.
+
+``` c++
+#include <bits/stdc++.h>
+#define endl "\n"
+using namespace std;
+```
+
+El `include` permite importar toda la librería estándar que tiene C++. `define` está para que `endl` actúe como una nueva línea, esto ya que el `endl` que provee la librería estándar, *flushea* el buffer antes de hacer la nueva línea. En términos simples, se utiliza para mejor rendimiento. Por último, el `namespace` sirve para no tener que escribir `std::cout` sino, únicamente escribir `cout`, haciendo todo mucho más sencillo.
+
+``` c++
+class Node {
+    public:
+        int data;
+        Node* next;
+        
+        Node(int val){
+            data = val;
+            next = nullptr;
+        }
+};
+```
+
+La clase `Node` es la que ya se viene manejando en la lista enlazada simple, un nodo tiene un valor `data` y un puntero al siguiente nodo, por defecto, este puntero es nulo.
+
+``` c++
+class LinkedList{
+    private: 
+        Node* head;
+    public:
+        LinkedList(){
+            head = nullptr;
+        }
+        
+        Node* get_head(){
+            return head;
+        }
+        
+        void insert(int val){
+            Node* newNode = new Node(val);
+            
+            if (head == nullptr){
+                head = newNode;
+            } else {
+                Node* temp = head;
+                while (temp -> next != nullptr)
+                    temp = temp -> next;
+                temp -> next = newNode;
+            }
+        }
+        
+        void printList(){
+            Node* temp = head;
+            while(temp != nullptr){
+                cout << temp -> data << " -> ";
+                temp = temp -> next;
+            }
+            cout << "NULL" << endl;
+        }
+};
+```
+
+Estos métodos ya se conocen, por lo tanto, no se va a explicar mucho de ellos.
+
+``` c++
+void printListNode(Node* head){
+    Node* temp = head;
+    while (temp != nullptr){
+        cout << temp -> data << " -> ";
+        temp = temp -> next;
+    }
+    cout << "NULL" << endl;
+}
+```
+
+Esta función se utiliza para imprimir la lista dada únicamente la cabeza, se diferencia del método `printList()` debido a que en `printListNode()` recibe la cabeza de la lista y no es un método en sí de la clase `LinkedList`, mientras que la otra sí lo es y no requiere recibir ningún parámetro.
+
+
+``` c++
+Node* reverse_linked_list(Node* temp){
+    if (head == nullptr) return nullptr;
+    
+    Node* iterator = head;
+    Node* prev = nullptr;
+    
+    while (iterator != nullptr){
+        Node* sig = iterator -> next;
+        iterator -> next = prev;
+        prev = iterator;
+        iterator = sig;
+    }
+    return prev;
+}
+```
+
+Aquí está la lógica fundamental del método, en primer lugar se mira si la lista está vacía (`head == nullptr`), si es así retorna nulo. Después se inicializan dos punteros; `iterator`, que inicia en la cabeza; y `prev`, que apunta a nulo. Se hace un ciclo `while` que finaliza cuando `iterator` sea nulo, si no es el caso, entonces inicializa otro puntero `sig` que referencia al siguiente nodo de `iterator`. Después, se cambia el enlace del siguiente nodo al que apunta `iterator` y se cambia al de `prev`. `prev` pasa a tener el mismo valor que `iterator` y por último, `iterator` pasa a donde está `sig`. Al final, se retorna `prev` debido a que `iterator` y `sig` terminan en nulo, por lo tanto, la cabeza ahora pasará a ser `prev`.
+
+
+``` c++
+int main(){
+
+    LinkedList list;
+    list.insert(1);
+    list.insert(2);
+    list.insert(3);
+    list.insert(4);
+    list.insert(5);
+    
+    cout << "Lista original" << endl;
+    
+    list.printList();
+    
+    cout << end << "Lista reversed" << endl;
+    
+    Node* arr_2 = reversed_linked_list(list.get_head());
+    printListNode(arr_2);
+    
+    return 0;
+}
+```
+
+Al compilar el programa y ejecutarlo, la salida es:
+
+``` text
+Lista original
+1 -> 2 -> 3 -> 4 -> 5 -> NULL
+
+Lista reversed
+5 -> 4 -> 3 -> 2 -> 1 -> NULL
+```
+
+Comprobando que sí está correcto el programa.
 
 
 ## Recursividad
@@ -199,6 +331,8 @@ NULL <---  |  1  | <---  |  2  |  <--- |  3  |  <--- |  4  |  <--- |  5  |  NULL
 
 
 ## Solución puesta en LeetCode
+
+LeetCode ya tiene precompilada la estructura de la lista enlazada y de los nodos, por lo tanto, no es necesario crearla y únicamente centrarse en hacer la función de `reverseList()`. Según el enunciado, el parámetro de entrada es la cabeza de la lista, por lo tanto, podemos asignar un iterador que comience desde la cabeza y seguir el algoritmo que ya se describió anteriormente en la sección de [Iterando](#iterando). 
     
 ``` c++
 class Solution {

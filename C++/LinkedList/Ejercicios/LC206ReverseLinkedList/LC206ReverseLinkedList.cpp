@@ -14,25 +14,51 @@ class Node{
         }
 };
 
-Node* arr_to_linked(int arr[], int size_arr){
+class LinkedList{
+    private:
+        Node* head;
 
-    if (size_arr == 0) return nullptr;
+    public:
+        LinkedList(){
+            head = nullptr;
+        }
 
-    Node* head = new Node(arr[0]);
-    Node* current = head;
+        Node* get_head() {
+            return head;
+        }
 
-    for (int i = 1; i < size_arr; i ++){
-        current -> next = new Node(arr[i]);
-        current = current -> next;
+        void insert(int val){
+            Node* newNode = new Node(val);
+
+            if (head == nullptr){
+                head = newNode;
+            }else {
+                Node* temp = head;
+                while (temp -> next != nullptr)
+                    temp = temp -> next;
+
+                temp -> next = newNode;
+            }
+        }
+
+        void printList(){
+            Node* temp = head;
+            while (temp != nullptr){
+                cout << temp -> data << " -> ";
+                temp = temp -> next;
+            }
+            cout << "NULL" << endl;
+        }
+};
+
+
+void printListNode(Node* head){
+    Node* temp = head;
+    while (temp != nullptr){
+        cout << temp -> data << " -> ";
+        temp = temp -> next;
     }
-    return head;
-}
-
-void printList(Node* head){
-    while (head != nullptr){
-        cout << head -> data << " -> ";
-        head = head -> next;
-    }
+    cout << "NULL" << endl;
 }
 
 
@@ -53,13 +79,22 @@ Node* reverse_linked_list(Node* head){
 
 
 int main(){
-    int arr[] = {1, 2, 3};
-    int size_arr = sizeof(arr) / sizeof(arr[0]);
+    LinkedList list;
 
-    
-    Node* List = arr_to_linked(arr, size_arr);
-    List = reverse_linked_list(List);
-    printList(List);
+    list.insert(1);
+    list.insert(2);
+    list.insert(3);
+    list.insert(4);
+    list.insert(5);
+
+    cout << "Lista original" << endl; 
+
+    list.printList();
+
+    cout << endl << "Lista reversed" << endl;
+
+    Node* arr_2 = reverse_linked_list(list.get_head()); 
+    printListNode(arr_2);
 
     return 0;
 }

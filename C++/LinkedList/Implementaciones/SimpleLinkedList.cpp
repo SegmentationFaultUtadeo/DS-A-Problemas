@@ -70,7 +70,6 @@ class LinkedList {
                 temp -> next = newNode; 
             }
         }
-
         
 
         void display(){

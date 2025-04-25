@@ -1,3 +1,21 @@
+# Tabla de Contenidos
+
+- [LeetCode 206. Reverse Linked List](#leetcode-206-reverse-linked-list)
+- [Enunciado](#enunciado)
+- [Soluciones](#soluciones)
+  - [Fuerza bruta](#fuerza-bruta)
+    - [Conceptualmente](#conceptualmente)
+    - [Código](#código)
+  - [Iterando](#iterando)
+    - [Conceptualmente](#conceptualmente-1)
+    - [Código](#código-1)
+  - [Recursividad](#recursividad)
+    - [Conceptualmente](#conceptualmente-2)
+    - [Código](#código-2)
+- [Solución puesta en LeetCode](#solución-puesta-en-leetcode)
+
+
+
 # LeetCode 206. Reverse Linked List 
 
 Ejercicio sacado de: https://leetcode.com/problems/reverse-linked-list/
@@ -180,3 +198,5 @@ NULL <---  |  1  | <---  |  2  |  <--- |  3  |  <--- |  4  |  <--- |  5  |  NULL
 ### Código
 
 
+## Solución puesta en LeetCode
+    

@@ -321,6 +321,16 @@ Lista reversed
 
 Comprobando que sí está correcto el programa.
 
+#### Análisis de complejidad 
+
+##### Temporal
+
+Debido a que únicamente iteramos una vez y se van cambiando los enlaces, decimos que este algoritmo tiene una complejidad temporal de $O(n)$.
+
+##### Espacial
+
+La lista no se incrementa ni se necesita de más espacio de memoria, por lo tanto, decimos que la complejidad espacial es constante $O(1)$.
+
 
 ## Recursividad
 

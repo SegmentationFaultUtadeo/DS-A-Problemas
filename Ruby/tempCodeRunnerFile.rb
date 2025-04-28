@@ -96,9 +96,9 @@ class LinkedList
     return if self.is_empty?
 
     current = @head
-    while current
-      if current.next.value == value
-        current.next = current.next.next
+    while current != nil
+      if current.next == value
+        current.next == current.next.next
         return
       end
       current = current.next
@@ -109,6 +109,7 @@ class LinkedList
   def insert_at_position()
     return
   end
+
 
 end
 
@@ -130,20 +131,3 @@ list.print_list
 
 list.delete_node(10)
 list.print_list
-list.insert_at_tail(10)
-list.print_list
-
-
-# puts list.is_empty?    # false
-# puts list.get_head.value  # 30
-
-# list.delete_at_head
-# list.print_list        # 20, 10, nil
-
-# list.search(10)
-
-# if found_node
-#   puts "Found: #{found_node.value}"
-# else
-#   puts "Not found"
-# end

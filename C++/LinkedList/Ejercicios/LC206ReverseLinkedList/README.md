@@ -6,12 +6,15 @@
   - [Fuerza bruta](#fuerza-bruta)
     - [Conceptualmente](#conceptualmente)
     - [Código](#código)
+    - [Análisis de complejidad](#análisis-de-complejidad)
+      - [Temporal](#temporal)
+      - [Espacial](#espacial)
   - [Iterando](#iterando)
     - [Conceptualmente](#conceptualmente-1)
     - [Código](#código-1)
-      - [Análisis de complejidad](#análisis-de-complejidad)
-        - [Temporal](#temporal)
-        - [Espacial](#espacial)
+    - [Análisis de complejidad](#análisis-de-complejidad-1)
+      - [Temporal](#temporal-1)
+      - [Espacial](#espacial-1)
   - [Recursividad](#recursividad)
     - [Conceptualmente](#conceptualmente-2)
     - [Código](#código-2)
@@ -201,13 +204,81 @@ Stack
 ```
 
 
-Este algoritmo sigue una complejidad temporal con dos ciclos separados, es decir, $O(n + n) = O(2n) \approx O(n)$. Y, una complejidad espacial de $O(n)$, ya que, se crea una nueva estructura (el *stack*) para el desarrollo del ejercicio. Es decir, nuestro algoritmo cumple en tiempos, sin embargo, si la entrada es demasiado grande, es probable que nos quedemos sin memoria.
-
-
 
 ### Código
 
+El código está en la función `reverse_linked_stack(Node* head)` recibiendo la cabeza de la lista y devolviendo esta misma. En primer lugar, se inicializa la pila utilizando la estructura que provee C++ de `stack`.
 
+``` c++
+Node* reverse_linked_stack(Node* head){
+    stack<int> s;
+```
+
+Seguido, se inicializa el nodo iterador (`iter`) empezando por la cabeza de la lista y se detiene cuando esté al final de la lista. El valor del nodo sobre el que esté `iter` va a ser guardado en el *stack* utilizando la función `.push()` y se avanza al siguiente nodo el que está `iter`.
+
+``` c++
+Node* iter = head;
+while (iter != nullptr){
+    s.push(iter -> data);
+    iter = iter -> next;
+}
+```
+
+Después se utiliza un segundo recorrido por la lista empezando por la cabeza y lo que se hace es reemplazar el valor del nodo sobre el que está el iterador y lo reemplaza por el nodo que está en el *top* de la pila, después se quita este elemento y por último, el iterador avanza al siguiente nodo.
+
+``` c++
+iter = head;
+while (iter != nullptr){
+    iter -> data = s.top();
+    s.pop();
+    iter = iter -> next;
+}
+```
+
+Entonces, toda la función queda como:
+
+``` c++
+Node* reverse_linked_stack(Node* head){
+    stack<int> s;
+    Node* iter = head;
+    while (iter != nullptr){
+        s.push(iter -> data);
+        iter = iter -> next;
+    }
+    
+    iter = head;
+    while (iter != nullptr){
+        iter -> data = s.top();
+        s.pop();
+        iter = iter -> next;
+    }
+    return head;
+}
+```
+
+Al compilar el programa, ejecutar la función e imprimir la lista, se obtiene:
+
+
+``` text
+Lista original
+1 -> 2 -> 3 -> 4 -> 5 -> NULL
+
+Lista reversed (stack)
+5 -> 4 -> 3 -> 2 -> 1 -> NULL
+```
+
+Probando que el algoritmo sí funciona.
+
+
+#### Análisis de complejidad 
+
+##### Temporal
+
+Este algoritmo sigue una complejidad temporal con dos ciclos separados, es decir, $O(n + n) = O(2n) \approx O(n)$.
+
+##### Espacial
+
+Una complejidad espacial de $O(n)$, ya que, se crea una nueva estructura (el *stack*) para el desarrollo del ejercicio. Es decir, nuestro algoritmo cumple en tiempos, sin embargo, si la entrada es demasiado grande, es probable que nos quedemos sin memoria.
 
 ## Iterando
 

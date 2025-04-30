@@ -66,11 +66,148 @@ Output: []
 
 # Soluciones 
 
-## Fuerza bruta
+## Fuerza bruta 
 
 ### Conceptualmente
 
+Se tiene en cuenta la lista:
+
+``` text
++-----+       +-----+       +-----+       +-----+       +-----+ 
+|  1  |  ---> |  2  |  ---> |  3  |  ---> |  4  |  ---> |  5  | --> NULL 
++-----+       +-----+       +-----+       +-----+       +-----+
+ head
+```
+
+
+Se desea llegar a
+
+``` text
+           +-----+       +-----+       +-----+       +-----+       +-----+ 
+NULL <---  |  1  |  <--- |  2  |  <--- |  3  |  <--- |  4  |  <--- |  5  |
+           +-----+       +-----+       +-----+       +-----+       +-----+
+                                                                     head 
+```
+
+Utilizando un método de fuerza bruta.
+
+Se puede crear una nueva estructura de datos para ir almacenando los valores de la lista, la que mejor corresponde es la de la pila o *stack*. Esto se debe a que mientras se va iterando sobre la lista enlazada original, se puede ir almacenando una copia de los valores en una pila para luego volver a iterar y utilizar el LIFO (*Last In First Out*) del *stack*. Es decir, empezamos a iterar desde el head de la lista y también creando un *stack*.
+
+``` text
++-----+       +-----+       +-----+       +-----+       +-----+ 
+|  1  |  ---> |  2  |  ---> |  3  |  ---> |  4  |  ---> |  5  | --> NULL            
++-----+       +-----+       +-----+       +-----+       +-----+
+ head
+ iter
+ 
+Stack
++-----+
+|     |
++-----+
+|     |
++-----+
+|  1  |
++-----+
+```
+
+`iter` va a seguir iterando sobre toda la lista hasta encontrar un puntero nulo y también guardando una copia de los valores de los nodos en el *stack*. Repitiendo este proceso, queadaría:
+
+``` text
++-----+       +-----+       +-----+       +-----+       +-----+ 
+|  1  |  ---> |  2  |  ---> |  3  |  ---> |  4  |  ---> |  5  | --> NULL
++-----+       +-----+       +-----+       +-----+       +-----+
+ head                                                               iter
+ 
+Stack
++-----+
+|  5  |
++-----+
+|  4  |
++-----+
+|  3  |
++-----+
+|  2  |
++-----+
+|  1  |
++-----+
+```
+
+Una vez teniendo todos los valores en el *stack* se puede volver a iterar desde el `head` y cambiar el valor de ese nodo, por el que está en el *top* del *stack*, esto se hace con la función `pop()` del *stack*, es decir, remueve el último elemento de esta estructura. Gráficamente, lo podemos representar como: 
+
+``` text
++-----+       +-----+       +-----+       +-----+       +-----+ 
+|  5  |  ---> |  2  |  ---> |  3  |  ---> |  4  |  ---> |  5  | --> NULL
++-----+       +-----+       +-----+       +-----+       +-----+
+ head                                                               
+ iter
+ 
+Stack
++-----+
+|     |
++-----+
+|  4  |
++-----+
+|  3  |
++-----+
+|  2  |
++-----+
+|  1  |
++-----+
+```
+
+Esta primera iteración cambia el valor del primer nodo por el que está en la cabeza de la pila. En una segunda iteración esto se ve como:
+
+``` text
++-----+       +-----+       +-----+       +-----+       +-----+ 
+|  5  |  ---> |  4  |  ---> |  3  |  ---> |  4  |  ---> |  5  | --> NULL
++-----+       +-----+       +-----+       +-----+       +-----+
+ head                                                               
+               iter
+Stack
++-----+
+|     |
++-----+
+|     |
++-----+
+|  3  |
++-----+
+|  2  |
++-----+
+|  1  |
++-----+
+```
+
+
+Una vez entendido este proceso, se itera hasta que `iter` sea diferente a NULL.
+
+``` text
++-----+       +-----+       +-----+       +-----+       +-----+ 
+|  5  |  ---> |  4  |  ---> |  3  |  ---> |  2  |  ---> |  1  | --> NULL
++-----+       +-----+       +-----+       +-----+       +-----+
+ head                                                               iter
+
+Stack
++-----+
+|     |
++-----+
+|     |
++-----+
+|     |
++-----+
+|     |
++-----+
+|     |
++-----+
+```
+
+
+Este algoritmo sigue una complejidad temporal con dos ciclos separados, es decir, $O(n + n) = O(2n) \approx O(n)$. Y, una complejidad espacial de $O(n)$, ya que, se crea una nueva estructura (el *stack*) para el desarrollo del ejercicio. Es decir, nuestro algoritmo cumple en tiempos, sin embargo, si la entrada es demasiado grande, es probable que nos quedemos sin memoria.
+
+
+
 ### Código
+
+
 
 ## Iterando
 

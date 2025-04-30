@@ -76,6 +76,22 @@ Node* reverse_linked_list(Node* head){
     return prev;
 }
 
+Node* reverse_linked_stack(Node* head){
+    stack<int> s;
+    Node* iter = head;
+    while (iter != nullptr){
+        s.push(iter -> data);
+        iter = iter -> next;
+    }
+
+    iter = head;
+    while (iter != nullptr){
+        iter -> data = s.top();
+        s.pop();
+        iter = iter -> next;
+    }
+    return head;
+}
 
 
 int main(){
@@ -90,10 +106,14 @@ int main(){
 
     list.printList();
 
-    cout << endl << "Lista reversed" << endl;
+    // cout << endl << "Lista reversed (iterating)" << endl;
 
-    Node* arr_2 = reverse_linked_list(list.get_head()); 
-    printListNode(arr_2);
+    // Node* arr_2 = reverse_linked_list(list.get_head()); 
+    // printListNode(arr_2);
+
+    cout << endl << "Lista reversed (stack)" << endl;
+    Node* arr_3 = reverse_linked_stack(list.get_head());
+    printListNode(arr_3);
 
     return 0;
 }

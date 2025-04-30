@@ -9,7 +9,7 @@ class Node {
     }
 }
 
-public class ListasEnlazadas {
+public class LinkedList {
 	// Clase para crear una lista enlazada
     static Node head;
 
@@ -36,16 +36,6 @@ public class ListasEnlazadas {
         int headValue = head.data;
         return headValue;
     }
-    
-    // Metodo para insertar un nuevo elemento
-    public static Node insertNewNode(Node node, int value) {
-        Node newNode = new Node(value);
-        while (node.next != null) {
-            node = node.next;
-        }
-        node.next = newNode;
-        return node;
-    }
 
     // Metodo para buscar elementos en la lista enlazada
     public static Node search(Node head, int value) {
@@ -59,17 +49,22 @@ public class ListasEnlazadas {
         return null;
     }
     
-    // Metodo para eliminar un nodo de la lista enlazada
-    
-    
     // Metodo para insertar en head
     public static Node insertAtHead(int value) {
-
         Node newNode = new Node(value);
         newNode.next= head;
         head = newNode;
-        
         return newNode;
+    }
+
+    // Metodo para eliminar ene head
+    public static Node deleteHeadNode() {
+        if (head == null) {
+            return null;
+        }
+        Node temp = head;
+        head = head.next;
+        return temp;
     }
     
     // Metodo para insertar un elemento de la cola 
@@ -82,7 +77,24 @@ public class ListasEnlazadas {
         current.next = newNode;
         return current;
     }
- 
+    // Metodo para insertar nodo en k posicion
+    public static Node insertAtK(int value, int k) {
+        Node newNode = new Node(value);
+        if (k == 0) {
+            newNode.next = head;
+            head = newNode;
+            return head;
+        }
+        Node current = head;
+        for (int i = 0; i < k - 1; i++) {
+            current = current.next;
+        }
+        if (current != null) {
+            newNode.next = current.next;
+            current.next = newNode;
+        }
+        return head;
+    }
 
     public static void main(String[] args) {
 
@@ -94,6 +106,8 @@ public class ListasEnlazadas {
         insertAtHead(5);
         insertTailNode(6);
         insertTailNode(7);
+        deleteHeadNode();
+        insertAtK(8, 3);
         printList(head);
         //System.out.println(head.next.data);
 

@@ -69,17 +69,29 @@ class LinkedList {
     // Insertar un nodo al final de la lista
     insert_at_tail(value){
         let nuevoNodo = new Node(value);
+        let current = this.head;
 
         if (this.head === null) {
             this.head = nuevoNodo;  // Si la lista está vacía, el nuevo nodo es la cabeza
             return;
         }
 
-        let current = this.head;
         while (current.next !== null){
             current = current.next;
         }
         current.next = nuevoNodo;
+    }
+
+    //Buscar un valor y reemplazarlo por un nuevo valor
+    update_value(search,value){
+        let nuevoNodo = new Node(value);
+        let current = this.head;
+
+        while (current.value !== search){
+            current = current.next;
+        }
+        console.log(current)
+
     }
 }
 
@@ -93,29 +105,5 @@ node2.next = node3;
 // Crear lista con node1 como cabeza
 let list1 = new LinkedList(node1);
 
-list1.print_list();
+list1.update_value(30,50)
 
-// Mostrar cabeza
-let head = list1.get_head();
-console.log("Cabeza:", head.value); // Debería imprimir 20
-
-// Verificar si la lista está vacía
-list1.is_empty(); // No debería estar vacía
-
-// Eliminar el nodo cabeza
-list1.delete_at_head(); // Elimina el nodo con valor 20
-
-// Imprimir la lista actual
-list1.print_list(); // Debería imprimir 30 y 50
-
-// Buscar el valor 50
-list1.search(50); // Debería indicar que está en la posición 2
-
-// Insertar un nodo al inicio
-list1.insert_at_head(2345);
-
-// Insertar un nodo al final
-list1.insert_at_tail(348934);
-
-// Imprimir la lista final
-list1.print_list(); // Debería imprimir 2345, 30, 50, 348934

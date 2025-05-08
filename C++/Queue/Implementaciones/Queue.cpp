@@ -60,23 +60,35 @@ void Queue::display(){
     return;
 }
 
-int main(){
-    Queue cola;
-    cout << "Insertar elementos 1, 2 y 3" << endl;
-    cola.enqueue(1);
-    cola.enqueue(2);
-    cola.enqueue(3);
-    cout << "Imprimir la cola" << endl;
-    cola.display();
-    cout << "Hacer dequeue()" << endl;
-    cola.dequeue();
-    cout << "Imprimir la cola" << endl;
-    cola.display();
-    cout << boolalpha;
-    cout << "Mirar si la cola esta empty" << endl;
-    cout << cola.is_empty() << endl;
-    cout << "Mirar el primer elemento de la cola" << endl;
-    cout << cola.front() -> data << endl;
-    cout << "Mirar el último elemento de la cola" << endl;
-    cout << cola.rear() -> data << endl;
+int Queue::get_size(){
+    Node* iter = head;
+    int size {0};
+    while (iter != nullptr){
+        size++;
+        iter = iter -> next;
+    }
+    return size;
 }
+
+
+
+// int main(){
+//     Queue cola;
+//     cout << "Insertar elementos 1, 2 y 3" << endl;
+//     cola.enqueue(1);
+//     cola.enqueue(2);
+//     cola.enqueue(3);
+//     cout << "Imprimir la cola" << endl;
+//     cola.display();
+//     cout << "Hacer dequeue()" << endl;
+//     cola.dequeue();
+//     cout << "Imprimir la cola" << endl;
+//     cola.display();
+//     cout << boolalpha;
+//     cout << "Mirar si la cola esta empty" << endl;
+//     cout << cola.is_empty() << endl;
+//     cout << "Mirar el primer elemento de la cola" << endl;
+//     cout << cola.front() -> data << endl;
+//     cout << "Mirar el último elemento de la cola" << endl;
+//     cout << cola.rear() -> data << endl;
+// }

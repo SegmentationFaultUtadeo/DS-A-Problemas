@@ -13,10 +13,10 @@ class Node {
 
 class Queue {
     private:
-        Node* head;
         Node* back;
 
     public:
+        Node* head;                
         Queue();
 
         void enqueue(int val);
@@ -25,6 +25,8 @@ class Queue {
         Node* front();
         Node* rear();
         void display();
+        void reverse_at_k();
+        int get_size();
 };
 
 #endif

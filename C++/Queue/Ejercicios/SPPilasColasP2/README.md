@@ -52,9 +52,10 @@ Dada una **cola** y un número **k**, invierte el orden de los primeros **k** el
 
 
 
-## Soluciones
+# Soluciones
 
-### El que pensé
+## El que pensé
+
 
 
 

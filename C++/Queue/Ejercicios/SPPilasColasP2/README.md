@@ -50,3 +50,12 @@ Dada una **cola** y un número **k**, invierte el orden de los primeros **k** el
 | $cola = [43, 5, 12, 4, 9, 6, 5]\\ k = -5$      | NULL    |
 
 
+
+
+## Soluciones
+
+### El que pensé
+
+
+
+

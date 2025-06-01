@@ -404,4 +404,185 @@ void addAtHead(int val){
 }
 ```
 
+### `void addAtTail(int val)`
+
+
+#### Conceptualmente
+
+Teniendo en cuenta la descripción de lo que debe hacer la función: "Append a node of value `val` as the last element of the linked list.". Pueden existir dos casos; si la lista no contienen ningún elemento, si no está vacía la lista.
+
+Para el caso en el que la lista es vacía nos podemos ayudar de la función `addAtHead(int val)` y simplemente llamarla. No se va a explicar muy a profundidad esto, ya que la función ya está implementada en el caso anterior, por lo tanto, no es necesario volver a hacer todo el diagrama y lo demás.
+
+En caso de que no esté vacía, se va a iterar hasta el último nodo de la lista y que este ahora apunte al nuevo nodo recién creado. Haga de cuenta la siguiente lista enlazada con tres elementos:
+
+``` text
+lista enlazada{
++-----+        +-----+        +-----+
+|  1  |  --->  |  2  |  --->  |  3  |  ---> NULL
++-----+        +-----+        +-----+
+  head
+
+length_list = 3
+}
+```
+
+Se desea agregar al final el nodo con el valor 4 para que quede de la siguiente manera: 
+
+``` text
+lista enlazada{
++-----+        +-----+        +-----+        +-----+
+|  1  |  --->  |  2  |  --->  |  3  |  --->  |  4  |  ---> NULL
++-----+        +-----+        +-----+        +-----+
+  head
+
+length_list = 4
+}
+```
+
+En primer lugar se necesita crear un nuevo nodo con el valor de 4:
+
+``` text
+lista enlazada{
++-----+        +-----+        +-----+
+|  1  |  --->  |  2  |  --->  |  3  |  ---> NULL
++-----+        +-----+        +-----+
+  head
+
+length_list = 3
+}
+
+newNode{
++-----+
+|  4  |  ---> NULL
++-----+
+}
+```
+
+Después se inicializa una variable `iter` que comience desde la cabeza de la lista:
+
+``` text
+lista enlazada{
++-----+        +-----+        +-----+
+|  1  |  --->  |  2  |  --->  |  3  |  ---> NULL
++-----+        +-----+        +-----+
+  head
+  iter
+
+length_list = 3
+}
+
+newNode{
++-----+
+|  4  |  ---> NULL
++-----+
+}
+```
+
+Ahora, hasta llegar al último elemento de la lista, eso se hace teniendo la condición de ¿Es `iter -> next` diferente a `nullptr`? Si sí, asigne el siguiente de `iter` a `iter`. Esto se puede ver para nuestra lista enlazada como:
+
+``` text
+lista enlazada{
++-----+        +-----+        +-----+
+|  1  |  --->  |  2  |  --->  |  3  |  ---> NULL
++-----+        +-----+        +-----+
+  head
+  iter
+
+length_list = 3
+}
+
+¿Es el siguiente nodo de iter diferente a NULL? Sí, entonces haga iter el siguiente nodo:
+
+lista enlazada{
++-----+        +-----+        +-----+
+|  1  |  --->  |  2  |  --->  |  3  |  ---> NULL
++-----+        +-----+        +-----+
+  head
+                 iter
+
+length_list = 3
+}
+
+¿Es el siguiente nodo de iter diferente a NULL? Sí, entonces haga iter el siguiente nodo:
+
+lista enlazada{
++-----+        +-----+        +-----+
+|  1  |  --->  |  2  |  --->  |  3  |  ---> NULL
++-----+        +-----+        +-----+
+  head
+                                iter
+
+length_list = 3
+}
+
+¿Es el siguiente nodo de iter diferente a NULL? No, entonces pare.
+
+```
+
+Como se vio, una vez que el siguiente nodo a `iter` es NULL, el ciclo se detiene e `iter` queda como el último nodo.
+
+Como paso final, se enlaza el nodo creado al valor siguiente de `iter` y se suma 1 al atributo de `length_list`, quedando de la siguiente manera:
+
+``` text
+lista enlazada{
++-----+        +-----+        +-----+       +-----+        
+|  1  |  --->  |  2  |  --->  |  3  |  ---> |  4  |  --->  NULL
++-----+        +-----+        +-----+       +-----+        
+  head
+                                iter
+
+length_list = 4
+}
+```
+
+
+#### Código
+
+Al igual que en la anterior función, no se está retornando nada al llamar la función, por lo tanto es una función de tipo `void` que toma un argumento `val` de tipo numérico entero:
+
+
+``` c++
+void addAtTail(int val){
+    ...
+}
+```
+
+
+
+Ahora, para la implementación en código, primero se realiza el primer caso para cuando la lista está vacía y se llama a la función ya definida de `addAtHead(val)`, quedando:
+
+``` c++
+if (head == nullptr){addAtHead(val); return;};
+```
+
+
+En el caso contrario, se procede a crear el nuevo nodo, iterar hasta el último nodo de la lista, después enlazar el nuevo nodo creado al final e incrementar el valor de `length_list`:
+
+``` c++
+Node* newNode = new Node(val);
+Node* iter = head;
+
+while (iter -> next != nullptr) iter = iter -> next;
+
+iter -> next = newNode;
+length_list++;
+```
+
+Ambos casos en conjunto hacen quedar a la función como:
+
+
+``` c++
+void addAtTail(int val){
+
+    if (head == nullptr){addAtHead(val); return;};
+    
+    Node* newNode = new Node(val);
+    Node* iter = head;
+    
+    while (iter -> next != nullptr) iter = iter -> next;
+    
+    iter -> next = newNode;
+    length_list++;
+}
+```
 

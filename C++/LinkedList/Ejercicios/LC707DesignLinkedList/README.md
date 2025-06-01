@@ -230,3 +230,178 @@ int get(int index){
 }
 ```
 
+### `void addAtHead(int val)`
+
+#### Conceptualmente
+
+La descripción de la función contiene lo siguiente: "Add a node of the value `val` before the first element of the linked list. After the insertion, the new node will be the first node of the linked list." Aquí pueden pasar dos escenarios, si la lista está vacía y si ya hay un nodo como cabeza. 
+
+En el primer caso es sencillo, se crea un nuevo nodo, se asigna como la cabeza de la lista y se aumenta el atributo de `length_list` de la lista enlazada. Se tiene la siguiente lista enlazada con nada de cabeza y longitud 0.
+
+``` text
+lista enlazada{
+  +------+
+  | NULL |
+  +------+
+    head
+
+ length_list = 0
+}
+```
+
+Se crea un nuevo nodo con valor 1:
+
+``` text
+lista enlazada{
+  +------+
+  | NULL |
+  +------+
+    head
+
+ length_list = 0
+}
+
+newNode{
++-----+
+|  1  |  ---> NULL
++-----+
+}
+```
+
+Una vez creado el nodo, se asigna como cabeza este nodo creado y se aumenta la longitud de la lista, esto quedaría como:
+
+``` text
+lista enlazada{
+   +-----+
+   |  1  |  ---> NULL
+   +-----+
+     head
+
+ length_list = 1
+}
+```
+
+Y listo, eso sería para el caso en el que no hay nada en la lista.
+
+Ahora, para el caso en el que no está vacía la lista. Haga de cuenta la siguiente lista enlazada con 3 elementos:
+
+``` text
++-----+        +-----+        +-----+
+|  1  |  --->  |  2  |  --->  |  3  |  ---> NULL
++-----+        +-----+        +-----+
+  head
+
+length_list = 3
+```
+
+Se va a agregar un elemento (4) al inicio, por lo tanto, la lista se espere que quede como:
+
+``` text
++-----+        +-----+        +-----+        +-----+
+|  4  |  --->  |  1  |  --->  |  2  |  --->  |  3  |  ---> NULL
++-----+        +-----+        +-----+        +-----+
+  head
+
+length_list = 4
+```
+
+Para llegar a esto se puede hacer de manera sencilla. En primer lugar, es crea un nuevo nodo con el valor que se quiere agregar a la lista.
+
+``` text
+lista enlazada{
++-----+        +-----+        +-----+
+|  1  |  --->  |  2  |  --->  |  3  |  ---> NULL
++-----+        +-----+        +-----+
+  head
+
+length_list = 3
+}
+
+newNode{
++-----+
+|  4  |  ---> NULL
++-----+
+}
+```
+
+Ahora, hacemos que `newNode` en lugar de apuntar a NULL apunte a la cabeza actual de la lista:
+
+``` text
+lista enlazada{
++-----+        +-----+        +-----+        +-----+
+|  4  |  --->  |  1  |  --->  |  2  |  --->  |  3  |  ---> NULL
++-----+        +-----+        +-----+        +-----+
+                 head
+
+length_list = 3
+}
+```
+
+Por último, el atributo `head` lo asignamos al nuevo nodo e incrementamos el valor de `length_list`:
+
+``` text
+lista enlazada{
++-----+        +-----+        +-----+        +-----+
+|  4  |  --->  |  1  |  --->  |  2  |  --->  |  3  |  ---> NULL
++-----+        +-----+        +-----+        +-----+
+  head                 
+
+length_list = 4
+}
+```
+
+
+#### Código
+
+La función no retorna nada, únicamente operaciones con la lista enlazada, se define como una `void` que toma un valor `val` numérico entero:
+
+``` c++
+void addAtHead(int val){
+    ...
+}
+```
+
+
+Teniendo en cuenta todo lo que se mencionó anteriormente. En primer lugar, como en ambos casos se necesita crear un nuevo nodo, entonces se crea al principio.
+
+``` c++
+Node* newNode = new Node(val);
+```
+
+Ahora, se realiza el primer caso para cuando la lista está vacía, asignando la cabeza al nuevo nodo e incrementando el atributo de la longitud de la lista:
+
+``` c++
+if (head == nullptr){
+    head = newNode;
+    length_list++;
+    return;
+}
+```
+
+Ahora, para el siguiente caso se asigna que el atributo de `next` del nuevo nodo apunte a la cabeza actual y después la cabeza de la lista sea este último nodo. Al igual que con el anterior caso, se incrementa en uno la longitud de la lista.
+
+``` c++
+newNode -> next = head;
+head = newNode;
+length_list++;
+```
+
+Estos dos casos en conjunto se ven en la función como:
+
+``` c++
+void addAtHead(int val){
+    Node* newNode = new Node(val);
+    
+    if (head == nullptr){
+        head = newNode;
+        length_list++;
+        return;
+    }
+
+    newNode -> next = head;
+    head = newNode;
+    length_list++;
+}
+```
+
+

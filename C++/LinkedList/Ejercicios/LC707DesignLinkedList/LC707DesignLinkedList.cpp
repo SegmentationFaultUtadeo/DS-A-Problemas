@@ -51,11 +51,9 @@ class MyLinkedList{
                 return;
             }
 
-            Node* temp = head;
+            newNode -> next = head;
             head = newNode;
-            head -> next = temp;
             length_list++;
-            return;
         }
 
         void addAtTail(int val){

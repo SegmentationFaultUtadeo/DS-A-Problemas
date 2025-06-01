@@ -586,3 +586,210 @@ void addAtTail(int val){
 }
 ```
 
+### `void addAtIndex(int index, int val)` 
+
+
+#### Conceptualmente
+
+Teniendo en cuenta el enunciado: "Add a node of value `val` before the `index-th` node in the linked list. If `index` equals the length of the linked list, the node will be appended to the end of the linked list. If `index` is greater than the length, the node **will not be inserted**."
+
+Se toman tres casos de acuerdo al enunciado; cuando el índice es mayor a la longitud de la lista, cuando el índice es igual a la longitud de la lista y el otro es cuando el índice es menor a la longitud de la lista.
+
+El primer caso (índice mayor a la longitud de la lista) simplemente no se hace nada y se finaliza la función.
+
+Para el segundo caso (índice de igual longitud al de la lista enlazada), nos dicen que toca agregarlo al final de la lista, con ayuda de la función `addAtTail(val)` esto se puede conseguir.
+
+Para el tercer caso, necesitamos iterar hasta la nodo anterior del índice y después hacemos que el nuevo nodo apunte al mismo nodo que está apuntando el iterador, por último el nodo que está iterando pasa a apuntar al nuevo nodo (obviamente, incrementar el tamaño de la lista).
+
+
+Este último caso, lo vamos a detener más paso a paso. En primer lugar supongamos tener la siguiente lista enlazada con sus respectivos índices y cabeza:
+
+
+``` text
+lista enlazada{
++-----+        +-----+        +-----+
+|  1  |  --->  |  2  |  --->  |  3  |  ---> NULL
++-----+        +-----+        +-----+
+   0              1              2
+  head
+
+length_list = 3
+}
+
+```
+
+Y se desea ingresar en el índice 1 un nodo con el valor de 4, quedando como:
+
+``` text
+lista enlazada{
++-----+       +-----+        +-----+        +-----+
+|  1  |  ---> |  4  |  --->  |  2  |  --->  |  3  |  ---> NULL
++-----+       +-----+        +-----+        +-----+
+   0             1              2              3
+  head
+
+length_list = 4
+}
+
+```
+
+En primer lugar, se debe crear un nuevo nodo con el valor de 4, esto se ve como:
+
+``` text
+lista enlazada{
++-----+        +-----+        +-----+
+|  1  |  --->  |  2  |  --->  |  3  |  ---> NULL
++-----+        +-----+        +-----+
+   0              1              2
+  head
+
+length_list = 3
+}
+
+newNode{
++-----+
+|  4  |  ---> NULL
++-----+
+}
+```
+
+Ahora, debemos iterar desde `head` hasta llegar al índice anterior del que debemos mover. Por lo tanto, esto se ve así:
+
+``` text
+Se desea colocar en el índice 1 el número 4
+
+lista enlazada{
++-----+        +-----+        +-----+
+|  1  |  --->  |  2  |  --->  |  3  |  ---> NULL
++-----+        +-----+        +-----+
+   0              1              2
+  head
+  iter
+
+length_list = 3
+}
+
+¿Se está en el índice anterior a 1? Sí, entonces pare.
+```
+ 
+En este caso se queda ahí y no hay necesidad de más iteraciones, en caso contrario se hace que `iter` pase al siguiente nodo y se aplica la condición.
+
+Ahora, se va a empezar a jugar con `newNode` y los enlaces. De momento tenemos lo siguiente:
+
+``` text
+lista enlazada{
++-----+        +-----+        +-----+
+|  1  |  --->  |  2  |  --->  |  3  |  ---> NULL
++-----+        +-----+        +-----+
+   0              1              2
+  head
+  iter 
+
+length_list = 3
+}
+
+newNode{
++-----+
+|  4  |  ---> NULL
++-----+
+}
+```
+
+En primer lugar, vamos a hacer que el enlace que tiene el nodo `newNode` pase a apuntar al siguiente nodo de `iter`, quedando:
+
+``` text
+lista enlazada{
++-----+        +-----+        +-----+
+|  1  |  --->  |  2  |  --->  |  3  |  ---> NULL
++-----+    --> +-----+        +-----+
+   0       |      1              2
+  head     |
+  iter     |
+           |
++-----+    |
+|  4  |  --⯾
++-----+
+
+length_list = 3
+}
+
+```
+
+Gráficamente se puede ver fácilmente qué es lo que se debe hacer después. Vamos a arreglar el enlace de `iter` que ahora apunte al nuevo nodo y también sumar 1 a `length_list` todo esto queda como:
+
+``` text
+lista enlazada{
++-----+        +-----+        +-----+       +-----+
+|  1  |  --->  |  4  |  --->  |  2  |  ---> |  3  |  ---> NULL
++-----+        +-----+        +-----+       +-----+
+   0              1              2             3
+  head
+  iter
+           
+length_list = 4
+}
+```
+
+
+
+#### Código
+
+Al igual que la anterior función, únicamente se realizan operaciones para la lista y no se retorna nada, por lo tanto es una función de tipo `void` que toma dos argumentos; `index` de tipo numérico entero y `val` de igual tipo.
+
+``` c++
+void addAtIndex(int index, int val){
+    ...
+}
+```
+
+
+Para empezar, se codifican los dos primeros casos para cuando el índice es mayor a la longitud de la lista enlazada y tabién para cuando es igual. Como se dijo en la parte conceptual, para el primer caso no se hace nada y para el segundo se llama a la función `addAtTail()`:
+
+``` c++
+if (index > length_list) return;
+
+if (index == length_list) {addAtTail(val); return;};
+```
+
+Ahora, para el tercer caso se crea el nuevo nodo con `val` y también la variable `iter` que empiece desde la cabeza de la lista.
+
+``` c++
+Node* newNode = new Node(val);
+Node* iter = head;
+```
+
+Ahora, se utiliza un ciclo `for` para ir hasta el índice anterior al que se desea mover y en cada iteración es mueve el `iter` al siguiente nodo.
+
+``` c++
+for (int i = 0; i < index - 1; i++) iter = iter -> next;
+```
+
+Y ahora, por último se juega con los enlaces como se mencionó en la parte conceptual, moviendo el enlace de `newNode` a que sea el nodo que está apuntando `iter` y después que `iter` apunte a `newNode`:
+
+``` c++
+newNode -> next = iter -> next;
+iter -> next = newNode;
+length_list++;
+```
+
+
+Todo esto en conjunto se ve:
+
+``` c++
+void addAtIndex(int index, int val){
+    
+    if (index > length_list) return;
+    
+    if (index == length_list) {addAtTail(val); return;};
+    
+    Node* newNode = new Node(val);
+    Node* iter = head;
+    
+    for(int i = 0; i < index - 1; i++) iter = iter -> next;
+    
+    newNode -> next = iter -> next;
+    iter -> next = newNode;
+    length_list++;
+}
+```
+

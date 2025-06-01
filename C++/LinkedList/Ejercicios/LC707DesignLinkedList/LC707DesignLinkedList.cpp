@@ -36,7 +36,7 @@ class MyLinkedList{
 
             Node* iter = head;
 
-            for (int i = 0; i <= index; i++) iter = iter -> next;
+            for (int i = 0; i < index; i++) iter = iter -> next;
 
             return iter -> val;
 
@@ -138,6 +138,12 @@ int main(){
     obj -> deleteAtIndex(2);
     obj -> printList();
 
+
+    cout << "Quiero obtener el valor del indice 1" << endl;
+    obj -> addAtTail(4);
+    obj -> printList();
+    int i1 {obj -> get(1)};
+    cout << i1 << endl;
 
 
     return 0;

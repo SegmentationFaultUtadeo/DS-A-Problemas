@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>README.html</title>
+<meta http-equiv="Content-Type" content="application/xhtml+xml;charset=utf-8"/>
+<link rel="stylesheet" type="text/css" media="all" href="https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css"  />
+<link rel="stylesheet" type="text/css" media="all" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/styles/github.min.css"  /><meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'><style> body { box-sizing: border-box; max-width: 740px; width: 100%; margin: 40px auto; padding: 0 10px; } </style><script id='MathJax-script' async src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'></script><script src='https://cdn.jsdelivr.net/gh/highlightjs/cdn-release/build/highlight.min.js'></script><script>document.addEventListener('DOMContentLoaded', () => { document.body.classList.add('markdown-body'); document.querySelectorAll('pre[lang] > code').forEach((code) => { code.classList.add(code.parentElement.lang); }); document.querySelectorAll('pre > code').forEach((code) => { hljs.highlightBlock(code); }); });</script>
+</head>
+
+<body>
+
+<h1>Tabla de Contenidos</h1>
+<ul>
+<li><a href="#leetcode-707-design-linked-list">LeetCode 707. Design Linked List</a></li>
+<li><a href="#enunciado">Enunciado</a></li>
+<li><a href="#soluciones">Soluciones</a><ul>
+<li><a href="#utilizando-un-atributo-de-longitud-de-la-lista">Utilizando longitud lista</a><ul>
+<li><a href="#conceptualmente">Conceptualmente</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1>LeetCode 707. Design Linked List</h1>
+<p>Ejercicio sacado de: <a href="https://leetcode.com/problems/design-linked-list/">https://leetcode.com/problems/design-linked-list/</a></p>
+<h1>Enunciado</h1>
+<p>Design your implementation of the linked list. You can choose to use a singly or doubly linked list. </p>
+<p>A node in a singly linked list should have two attributes: <code>val</code> and <code>next</code>. <code>val</code> is the value of the current node, and <code>next</code> is a pointer/reference to the next node.</p>
+<p>If you want to use the doubly linked list, you will need one more attribute <code>prev</code> to indicate the previous node in the linked list. Assume all nodes in the linked list are <strong>0-indexed</strong>.</p>
+<p>Implement the <code>MyLinkedList</code> cass:</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> <code>MyLinkedList()</code> Initializes the <code>MyLinkedList</code> object.</li>
+<li><input checked="" disabled="" type="checkbox"> <code>int get(int index)</code> Get the value of the <code>index-th</code> node in the linked list. If the index is invalid, return -1.</li>
+<li><input checked="" disabled="" type="checkbox"> <code>void addAtHead(int val)</code> Add a node of the value <code>val</code> before the first element of the linked list. After the insertion, the new node will be the first node of the linked list.</li>
+<li><input checked="" disabled="" type="checkbox"> <code>void addAtTail(int val)</code> Append a node of value <code>val</code> as the last element of the linked list.</li>
+<li><input checked="" disabled="" type="checkbox"> <code>void addAtIndex(int index, int val)</code> Add a node of value <code>val</code> before the <code>index-th</code> node in the linked list. If <code>index</code> equals the length of the linked list, the node will be appended to the end of the linked list. If <code>index</code> is greater than the length, the node <strong>will not be inserted</strong>.</li>
+<li><input checked="" disabled="" type="checkbox"> <code>void deleteAtIndex(int index)</code> Delete the <code>index-th</code> node in the linkedlist, if the index is valid.</li>
+</ul>
+<p><strong>Constraints:</strong></p>
+<ul>
+<li><code>0 &lt;= index, val &lt;= 1000</code></li>
+<li>Please do not use the built-in LinkedList library.</li>
+<li>At most <code>2000</code> calls will be made to <code>get</code>, <code>addAtHead</code>, <code>addAtTail</code>, <code>addAtIndex</code> and <code>deleteAtIndex</code>.</li>
+</ul>
+<hr>
+<h1>Soluciones</h1>
+<p>Todas las soluciones tienen por defecto una clase llamada <code>Node</code> que cuenta con dos atributos <code>val</code> (encargado de almacenar el valor numérico del nodo)  y <code>next</code> (puntero encargado de referenciar al nodo siguiente que se quiere apuntar). El constructor recibe un valor entero numérico y se encarga de asignar los atributos <code>val</code> del nodo al dato que recibe y se inicializa por defecto que el nodo al que está apuntando sea nulo. En código esto se ve:</p>
+<pre><code class="language-c++">class Node{
+    public:
+        int val;
+        Node* next;
+        Node(int data){
+            val = data;
+            next = nullptr;
+        }
+};
+</code></pre>
+<p>Cuando uno va a crear una instancia de la clase, haciendo <code>Node* nuevoNodo = new Node(1)</code> se está creando un nuevo nodo y que en nuestro espacio se ve algo así:</p>
+<pre><code class="language-text">+-----+
+|  1  |  ---&gt; NULL
++-----+
+</code></pre>
+<p>El nodo sería la cajita, el valor lo que está dentro de esta y la flechita es la referencia (el puntero <code>next</code>).</p>
+<p>Entonces, si se vuelve a crear otro nodo, como <code>Node* nuevoNodo2 = new Node(2)</code> nuestra memoria se ve algo así:</p>
+<pre><code class="language-text">+-----+
+|  1  |  ---&gt; NULL
++-----+
+
++-----+
+|  2  |  ---&gt; NULL
++-----+
+</code></pre>
+<p>Más adelante se explica cómo enlazar diferentes nodos entre sí.</p>
+<h2>Utilizando un atributo de longitud de la lista</h2>
+<h3><code>MyLinkedList()</code></h3>
+<h4>Conceptualmente</h4>
+<p>La clase cuando se inicializa no toma ningún argumento, se crea una nueva lista que tiene dos atributos; <code>head</code>, puntero de tipo <code>Node</code>; <code>length_list</code> valor entero. Al inicializarla como <code>MyLinkedList** obj = new MyLinkedList()</code> se inicializa <code>head</code> como un puntero nulo (no hay nodos, por lo tanto se colocan como nulos), y también el atributo <code>length_list</code> se inicializa como 0. Ambos atributos tienen sentido debido a que todavía no hay nada en la lista enlazada.</p>
+<h4>Código</h4>
+<p>La implementación en código de la clase se ve así:</p>
+<pre><code class="language-c++">class MyLinkedList{
+    public:
+        Node* head;
+        int length_list;
+        MyLinkedList(){
+            head = nullptr;
+            length_list = 0;
+        }
+};
+</code></pre>
+<p>Como se comentó, cuando se inicializa la clase tiene dos atributos <code>head</code> y <code>length_list</code> que toman valores de <code>nullptr</code> y de 0, respectivamente.</p>
+<p>Una instancia de la clase (objeto) se puede crear como:</p>
+<pre><code class="language-c++">MyLinkedList* obj = new MyLinkedList();
+</code></pre>
+<p>No toma parámetros y la variable <code>obj</code> es un puntero.</p>
+<h3><code>int get(int index)</code></h3>
+<h4>Conceptualmente</h4>
+<p>De acuerdo a la descripción de lo que debe hacer la función &quot;Get the value of the <code>index-th</code> node in the linked list. If the index is invalid, return -1.&quot;.  Decimos que un </p>
+<h4>Código</h4>
+
+
+</body>
+</html>

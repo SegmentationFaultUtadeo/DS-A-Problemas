@@ -121,7 +121,112 @@ No toma parámetros y la variable `obj` es un puntero.
 
 #### Conceptualmente
 
-De acuerdo a la descripción de lo que debe hacer la función "Get the value of the `index-th` node in the linked list. If the index is invalid, return -1.".  Decimos que un 
+De acuerdo a la descripción de lo que debe hacer la función "Get the value of the `index-th` node in the linked list. If the index is invalid, return -1.".  Decimos que un índice es invalido cuando este es menor que $0$ o cuando es mayor o igual a la longitud de la lista, esto último se puede explicar así, haga de cuenta una lista enlazada con 3 elementos (longitud 3) con sus respectivos índices.
+
+``` text
++-----+        +-----+        +-----+
+|  1  |  --->  |  2  |  --->  |  3  |  ---> NULL
++-----+        +-----+        +-----+
+   0              1              2
+```
+
+
+Ahí ya se puede ver que, si queremos acceder al índice de mismo valor que la longitud (3), este no existe dentro de nuestros índices disponibles, por lo tanto, se considera invalido.
+
+En caso de que el índice sea valido, debemos crear un puntero `iter` que empiece desde la cabeza de la lista y que itere hasta cuando esté en el índice que se necesita. Después, se retorna el valor de `iter`.
+
+Supongamos la misma lista de 3 elementos descrita anteriormente y se desea obtener el valor del índice 2. Se puede utilizar un ciclo `for` desde `i=0` hasta `i < 2` y que se incremente de uno en uno. Por cada iteración, `iter` va a avanzar al siguiente nodo y se detiene cuando `i` sea igual a `2` (en este caso). Esto se ve algo así:
+
+``` text
++-----+        +-----+        +-----+
+|  1  |  --->  |  2  |  --->  |  3  |  ---> NULL
++-----+        +-----+        +-----+
+   0              1              2
+ iter
+```
+
+Se comienza con un nodo `iter` en la cabeza de la lista. Ahora, se pasa a iterar hasta llegar al índice `2`.
+
+``` text
+Condición: i < 2
+i = 0
+
++-----+        +-----+        +-----+
+|  1  |  --->  |  2  |  --->  |  3  |  ---> NULL
++-----+        +-----+        +-----+
+   0              1              2
+  iter
+
++-----+        +-----+        +-----+
+|  1  |  --->  |  2  |  --->  |  3  |  ---> NULL
++-----+        +-----+        +-----+
+   0              1              2
+                 iter
+i = 1
+```
+
+En el primer paso `iter` pasó a estar en el índice 1 y a `i` se le sumó 1.
+
+``` text
+Condición: i < 2
+i = 1
+
++-----+        +-----+        +-----+
+|  1  |  --->  |  2  |  --->  |  3  |  ---> NULL
++-----+        +-----+        +-----+
+   0              1              2
+  iter
+
++-----+        +-----+        +-----+
+|  1  |  --->  |  2  |  --->  |  3  |  ---> NULL
++-----+        +-----+        +-----+
+   0              1              2
+                                iter
+i = 2
+```
+
+
+Para la segunda iteración `iter` pasó a estar en el índice 2 y `i` pasa a tener el valor de 2. Aquí, `iter` ya se encuentra en el índice que se requiere y teniendo en cuenta que `i = 2`, esto ya rompe la condición de que `i` deba ser menor a 2. Por lo tanto, aquí se acaba el ciclo y se retorna el valor de `iter` (3).
 
 
 #### Código
+
+Esta función toma un argumento `index` de tipo numérico entero. Se inicializa la función como:
+
+``` c++
+int get(int index){
+    ...
+}
+```
+
+Ahora, va a comprobar si el índice es invalido (menor a 0 o mayor o igual a la longitud de la lista), si sí, retorna -1.
+
+``` c++
+if (index < 0 || index >= length_list) return -1;
+```
+
+En caso contrario, se realiza todo el ciclo que se describió anteriormente; inicializando `iter` desde `head`, hacer el ciclo `for` hasta que quede en el índice que se necesita y después se retorna el valor de este.
+
+``` c++
+Node* iter = head;
+
+for (int i = 0; i < index; i++) iter = iter -> next;
+
+return iter -> val;
+```
+
+Todo esto en conjunto se ve de la siguiente manera:
+
+``` c++
+int get(int index){
+
+    if (index < 0 || index >= length_list) return -1;
+    
+    Node* iter = head;
+    
+    for (int i = 0; i < index; i++) iter = iter -> next;
+    
+    return iter -> val;
+}
+```
+

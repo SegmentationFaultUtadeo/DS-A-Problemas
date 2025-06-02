@@ -793,3 +793,281 @@ void addAtIndex(int index, int val){
 }
 ```
 
+
+### `void deleteAtIndex(int index)`
+
+
+#### Conceptualmente
+
+Teniendo en cuenta el enunciado: "Delete the `index-th` node in the linkedlist, if the index is valid.". Se toman 3 posibles casos; cuando el índice es mayor o igual a la longitud de la lista, cuando el índice es 0, y para el resto de casos.
+
+En el primer caso únicamente es comprobar si el índice es mayor o igual a la longitud de la lista y si sí, retornar nada.
+
+Para el segundo caso (índice igual a 0), tengamos en cuenta la siguiente lista con solo un nodo y su índice:
+
+``` text
+lista enlazada{
++-----+
+|  1  |  --->  NULL
++-----+
+   0
+  head
+           
+length_list = 1
+}
+```
+
+Debemos eliminar el nodo de la cabeza, por lo tanto, podemos crear un nodo `temp` que sea una copia de la cabeza, quedando:
+
+``` text
+lista enlazada{
++-----+
+|  1  |  --->  NULL
++-----+
+   0
+  head
+           
+length_list = 1
+}
+
+temp {
++-----+
+|  1  |  --->  NULL
++-----+
+}
+```
+
+Ahora, la cabeza va a ser igual al enlace de `temp` y se reduce la longitud de la lista en 1
+
+``` text
+lista enlazada{
+
+   NULL         
+  head
+           
+length_list = 0
+}
+
+temp {
++-----+
+|  1  |  --->  NULL
++-----+
+}
+```
+
+Ahora, se elimina el nodo `temp`
+
+``` text
+lista enlazada{
+
+   NULL         
+  head
+           
+length_list = 0
+}
+           +--------------------------+    
+           |      temp {              |
+           |      +-----+             |
+delete ->  |      |  1  |  --->  NULL |
+           |      +-----+             |
+           |      }                   |
+           +--------------------------+
+```
+
+Ahora, para el último caso, vamos a tener en cuenta la siguiente lista de 4 nodos con sus respectivos índices:
+
+``` text
+lista enlazada{
++-----+        +-----+        +-----+       +-----+
+|  1  |  --->  |  2  |  --->  |  3  |  ---> |  4  |  ---> NULL
++-----+        +-----+        +-----+       +-----+
+   0              1              2             3
+  head
+           
+length_list = 4
+}
+```
+
+Se quiere eliminar el nodo del índice 2, la lista deberá quedar:
+
+``` text
+lista enlazada{
++-----+        +-----+        +-----+
+|  1  |  --->  |  2  |  --->  |  4  |  ---> NULL
++-----+        +-----+        +-----+
+   0              1              2
+  head
+           
+length_list = 3
+}
+```
+
+Se crea primero una variable `iter` que desde `head` vaya iterando (`i`) por toda la lista hasta llegar al nodo anterior que se desea eliminar.
+
+``` text
+lista enlazada{
++-----+        +-----+        +-----+       +-----+
+|  1  |  --->  |  2  |  --->  |  3  |  ---> |  4  |  ---> NULL
++-----+        +-----+        +-----+       +-----+
+   0              1              2             3
+  head
+  iter         
+length_list = 4
+}
+```
+
+Ahora, empieza el ciclo:
+
+``` text
+Se desea eliminar el nodo del índice 2.
+ 
+i = 0
+
+¿Es i menor a 2-1? Sí, entonces: 
+
+lista enlazada{
++-----+        +-----+        +-----+       +-----+
+|  1  |  --->  |  2  |  --->  |  3  |  ---> |  4  |  ---> NULL
++-----+        +-----+        +-----+       +-----+
+   0              1              2             3
+  head
+                 iter         
+length_list = 4
+}
+i = 1
+```
+
+Ahora, pasa a la segunda iteración:
+
+``` text
+Se desea eliminar el nodo del índice 2.
+ 
+i = 1
+
+¿Es i menor a 2-1? No, entonces pasar al siguiente paso: 
+
+```
+
+Como se pudo ver, el ciclo hace que `iter` llegue al nodo anterior (índice 1) al que se desea eliminar (índice 2). Ahora, se va a crear un nodo (`temp`) que sea una copia del nodo que se desea eliminar (el siguiente al `iter`):
+
+
+``` text
+lista enlazada{
++-----+        +-----+        +-----+       +-----+
+|  1  |  --->  |  2  |  --->  |  3  |  ---> |  4  |  ---> NULL
++-----+        +-----+        +-----+       +-----+
+   0              1              2             3
+  head
+                 iter
+                                temp
+length_list = 4
+}
+```
+
+Ahora, se va a cambiar el enlace del nodo donde está `iter` a ser el nodo que está enlazado a `temp`, esto se ve así:
+
+``` text
+lista enlazada{
++-----+        +-----+        +-----+       +-----+
+|  1  |  --->  |  2  |  ---|  |  3  |  ---> |  4  |  ---> NULL
++-----+        +-----+     |  +-----+  |    +-----+
+   0              1        |     2     |       3
+  head                     |    temp   |
+                 iter      +-----------|
+                                
+length_list = 4
+}
+```
+
+Aquí ya se puede ver que el nodo `temp` ya no está enlazado a `iter`. Ahora únicamente toca eliminar el nodo `temp` y disminuir el atributo de longitud de la lista, quedando como: 
+
+``` text
+lista enlazada{
++-----+        +-----+        +-----+
+|  1  |  --->  |  2  |  --->  |  4  |  ---> NULL
++-----+        +-----+        +-----+
+   0              1              2
+  head
+                 iter
+length_list = 3
+}
+```
+
+
+#### Código
+
+La función no retorna nada, por lo tanto se toma como `void`:
+
+``` c++
+void deleteAtIndex(int index){
+    ...
+}
+```
+
+
+
+Para el primer caso, es sencillo hacer la condición y hacer que si se cumple entonces no retorne nada:
+
+
+``` c++
+if (index >= length_list) return;
+```
+
+Ahora, para el segundo caso (se desea eliminar la cabeza de la lista), se crea un nodo `temp` que esté en la cabeza. Después se asigna la cabeza como al nodo que está apuntando `temp` y después se elimina `temp` y disminuyendo el atributo del tamaño.
+
+``` c++
+if (index == 0){
+    Node* temp = head;
+    head = temp -> next;
+    length_list--;
+    delete temp;
+    temp = nullptr;
+    return;
+}
+```
+
+Para el caso restante, se comienza inicializando `iter` en la cabeza y hacerla recorrer la lista hasta que alcance el nodo que va antes del que se desea eliminar:
+
+``` c++
+Node* iter = head;
+for (int i = 0; i < index - 1; i++) iter = iter -> next;
+```
+
+Por último, se hace el juego de los enlaces; se crea una variable `temp` con el nodo que se desea eliminar, `iter` ahora pasa a apuntar al nodo que apunta `temp`, se disminuye la longitud de la lista y se elimina el nodo `temp`.
+
+``` c++
+Node* temp = iter -> next;
+iter -> next = temp -> next;
+length_list--;
+delete temp;
+temp = nullptr;
+```
+
+
+Todo esto en conjunto forma:
+
+``` c++
+void deleteAtIndex(int index){
+    if (index >= length_list) return;
+    
+    if (index == 0){
+        Node* temp = head;
+        head = temp -> next;
+        length_list--;
+        delete temp;
+        temp = nullptr;
+        return;
+    }
+
+    Node* iter = head;
+    for (int i = 0; i < index - 1; i++) iter = iter -> next;
+    
+    Node* temp = iter -> next;
+    iter -> next = temp -> next;
+    length_list--;
+    delete temp;
+    temp = nullptr;
+}
+```
+
+

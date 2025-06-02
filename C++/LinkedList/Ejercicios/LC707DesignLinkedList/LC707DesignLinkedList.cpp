@@ -94,6 +94,7 @@ class MyLinkedList{
                 head = temp -> next;
                 length_list--;
                 delete temp;
+                temp = nullptr;
                 return;
             }
 
@@ -104,6 +105,7 @@ class MyLinkedList{
             iter -> next = temp -> next;
             length_list--;
             delete temp;
+            temp = nullptr;
         }
 };
 

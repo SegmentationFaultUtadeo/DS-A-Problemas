@@ -8,10 +8,10 @@ using namespace std;
 template<typename T>
 class Node{
     public:
-        T data;
+        T val;
         Node* next;
-        Node(T val){
-            data = val;
+        Node(T data){
+            val = data;
             next = nullptr;
         }
 };
@@ -104,7 +104,7 @@ class LinkedListIndex{
             }
 
             Node<T>* iter = head;
-            for (int i = 0; i < index - 1; i+=) iter = iter -> next;
+            for (int i = 0; i < index - 1; i++) iter = iter -> next;
 
             Node<T>* temp = iter -> next;
             iter -> next = temp -> next;

@@ -5,8 +5,12 @@
 - [Enunciado](#enunciado)
 - [Soluciones](#soluciones)
   - [Utilizando longitud lista](#utilizando-un-atributo-de-longitud-de-la-lista)
-    - [Conceptualmente](#conceptualmente)
-
+    - [MyLinkedList()](#mylinkedlist)
+      - [Conceptualmente](#conceptualmente)
+      - [Código](#código)
+      - [Análisis de complejidad](#análisis-de-complejidad)
+    - [int get(int index)](#int-get-int-index) 
+    
 # LeetCode 707. Design Linked List 
 
 Ejercicio sacado de: https://leetcode.com/problems/design-linked-list/
@@ -117,6 +121,9 @@ MyLinkedList* obj = new MyLinkedList();
 No toma parámetros y la variable `obj` es un puntero.
 
 
+#### Análisis de complejidad 
+##### Temporal
+##### Espacial
 ### `int get(int index)`
 
 #### Conceptualmente
@@ -230,6 +237,9 @@ int get(int index){
 }
 ```
 
+#### Análisis de complejidad 
+##### Temporal
+##### Espacial
 ### `void addAtHead(int val)`
 
 #### Conceptualmente
@@ -404,6 +414,9 @@ void addAtHead(int val){
 }
 ```
 
+#### Análisis de complejidad 
+##### Temporal
+##### Espacial
 ### `void addAtTail(int val)`
 
 
@@ -586,6 +599,9 @@ void addAtTail(int val){
 }
 ```
 
+#### Análisis de complejidad 
+##### Temporal
+##### Espacial
 ### `void addAtIndex(int index, int val)` 
 
 
@@ -794,6 +810,9 @@ void addAtIndex(int index, int val){
 ```
 
 
+#### Análisis de complejidad 
+##### Temporal
+##### Espacial
 ### `void deleteAtIndex(int index)`
 
 
@@ -1071,3 +1090,7 @@ void deleteAtIndex(int index){
 ```
 
 
+
+#### Análisis de complejidad 
+##### Temporal
+##### Espacial

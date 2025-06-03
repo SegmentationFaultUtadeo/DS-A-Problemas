@@ -76,6 +76,8 @@ class MyLinkedList{
 
             if (index == length_list) {addAtTail(val); return;};
 
+            if (index == 0) {addAtHead(val); return;};
+
             Node* newNode = new Node(val);
             Node* iter = head;
 

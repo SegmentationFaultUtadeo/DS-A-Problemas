@@ -1,4 +1,4 @@
-package estructuras;
+package LinkedList.Implementaciones;
 
 public class LinkedList {
 	// Clase para crear una lista enlazada

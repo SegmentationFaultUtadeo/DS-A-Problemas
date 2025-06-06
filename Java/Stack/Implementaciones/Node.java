@@ -1,11 +1,11 @@
-package estructuras;
+package Stack.Implementaciones;
 
-public class Node {
-    int data;
-    Node next;
+public class Node<T> {
+    T data;
+    Node<T> next;
 
     // Constructor para crear el nodo y establecer el siguiente nodo como null
-    Node(int data) {
+    Node(T data) {
         this.data = data;
         this.next = null;
     }

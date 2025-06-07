@@ -1,10 +1,10 @@
-package estructuras;
+package Queue.Implementaciones;
 
-public class Cola {
-    private Node head;
-    private Node tail;
+public class Queue<T> {
+    private Node<T> head;
+    private Node<T> tail;
 
-    public Cola() {
+    public Queue() {
         this.head = null;
         this.tail = null;
     }
@@ -15,8 +15,8 @@ public class Cola {
     }
 
     // Método para agregar un elemento al final de la cola
-    public void enqueue(int value) {
-        Node newNode = new Node(value);
+    public void enqueue(T value) {
+        Node<T> newNode = new Node<>(value);
         if (isEmpty()) {
             head = newNode;
             tail = newNode;
@@ -27,11 +27,11 @@ public class Cola {
     }
 
     // Método para eliminar y retornar el elemento al frente de la cola
-    public Node dequeue() {
+    public Node<T> dequeue() {
         if (isEmpty()) {
             return null;
         }
-        Node temp = head;
+        Node<T> temp = head;
         head = head.next;
         if (head == null) {
             tail = null;
@@ -40,8 +40,8 @@ public class Cola {
     }
 
     // Metodo para mostrar la lista enlazada
-    public static void printList(Node head) {
-        Node current = head;
+    public static <T> void printList(Node<T> head) {
+        Node<T> current = head;
         // recorrer hasta current sea null
         while (current != null) {
             System.out.print(current.data + " ");
@@ -50,29 +50,38 @@ public class Cola {
     }
 
     // Metodo que devuelve el valor del primer elemento de la cola
-    public int front() {
+    public T front() {
         return head.data;
     }
     // Metodo que devuelve el valor del último elemento de la cola
-    public int rear() {
+    public T rear() {
         return tail.data;
     }
 
+    // Metodo para obtener el tamaño de la cola
+    public int size() {
+        int count = 0;
+        Node<T> current = head;
+        while (current != null) {
+            count++;
+            current = current.next;
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
-        Cola cola = new Cola();
+        Queue<Integer> cola = new Queue<>();
         cola.enqueue(1);
         cola.enqueue(2);
         cola.enqueue(3);
 
         // imprimir los elementos de la cola
         printList(cola.head);
-        System.out.println("\n");
-        System.out.println(cola.front());
-        System.out.println("\n");
-        System.out.println(cola.rear());
-
+        System.out.println();
+        System.out.println("Primer elemento de la cola: " + cola.front());
+        System.out.println("Último elemento de la cola: " + cola.rear());
+        // eliminar el primer elemento de la cola
         cola.dequeue();
-        System.out.println("\n");
         printList(cola.head);
     }
 }

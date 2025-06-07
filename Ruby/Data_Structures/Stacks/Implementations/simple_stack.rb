@@ -39,7 +39,7 @@ class Stack
 end
 
 
-stack_1 = Stack.new()
-stack_1.push(40)
-stack_1.push(true)
-puts stack_1.print_stack
+# stack_1 = Stack.new()
+# stack_1.push(40)
+# stack_1.push(true)
+# puts stack_1.print_stack

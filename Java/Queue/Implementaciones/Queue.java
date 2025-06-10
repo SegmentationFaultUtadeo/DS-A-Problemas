@@ -27,7 +27,7 @@ public class Queue<T> {
     }
 
     // Método para eliminar y retornar el elemento al frente de la cola
-    public Node<T> dequeue() {
+    public T dequeue() {
         if (isEmpty()) {
             return null;
         }
@@ -36,7 +36,7 @@ public class Queue<T> {
         if (head == null) {
             tail = null;
         }
-        return temp;
+        return temp.data;
     }
 
     // Metodo para mostrar la lista enlazada
@@ -53,6 +53,7 @@ public class Queue<T> {
     public T front() {
         return head.data;
     }
+
     // Metodo que devuelve el valor del último elemento de la cola
     public T rear() {
         return tail.data;
@@ -67,6 +68,11 @@ public class Queue<T> {
             current = current.next;
         }
         return count;
+    }
+
+    // Método para obtener la cabeza de la cola
+    public Node<T> getHead() {
+        return head;
     }
 
     public static void main(String[] args) {

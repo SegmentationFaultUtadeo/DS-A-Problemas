@@ -5,7 +5,7 @@
 
 void reverse_at_k_2(Queue<int> cola, int k){
 
-    if (k < 0 | k > cola.get_size() | cola.is_empty() == true) { cout << "NULL" << endl; return;}
+    if (k < 0 | k > cola.get_size() | cola.is_empty()) { cout << "NULL" << endl; return;}
 
     Node<int>* iter = cola.front() -> next;
     Node<int>* prev = cola.front();
@@ -32,8 +32,8 @@ int main(){
     cola.enqueue(60);
     cola.enqueue(70);
     cola.enqueue(80);
-    // cola.enqueue(9);
-    // cola.enqueue(10);
+    cola.enqueue(9);
+    cola.enqueue(10);
     cola.display();
     reverse_at_k_2(cola, 3);
     // cola.display();

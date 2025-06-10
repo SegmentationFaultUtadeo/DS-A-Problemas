@@ -19,7 +19,7 @@ public class Stack<T> {
         top = newNode;
     }
 
-    // Metodo para mostrar la lista enlazada
+    // Metodo para mostrar la pila
     public static<T> void printList(Node<T> head) {
         Node<T> current = head;
         // recorrer hasta current sea null
@@ -30,15 +30,15 @@ public class Stack<T> {
     }
 
     // Método para eliminar y retornar el elemento en la parte superior de la pila
-    public Node<T> pop() {
+    public T pop() {
         if (isEmpty()) {
-            return null;
+            throw new IllegalStateException("Pila está vacía");
         }
-        Node<T> temp = top;
+        T value = top.data;
         top = top.next;
-        return temp;
+        return value;
     }
-
+    
     // Método para obtener el valor del elemento en la parte superior de la pila
     public T peek() {
         if (isEmpty()) {
@@ -56,6 +56,11 @@ public class Stack<T> {
             current = current.next;
         }
         return count;
+    }
+
+    // Método para obtener la cabeza de la pila
+    public Node<T> getTop() {
+        return top;
     }
 
     public static void main(String[] args) {

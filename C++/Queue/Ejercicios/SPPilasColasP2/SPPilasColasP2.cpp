@@ -3,7 +3,7 @@
 
 
 
-void reverse_at_k_2(Queue<int> cola, int k){
+void reverse_at_k_2(Queue<int>& cola, int k){
 
     if (k < 0 | k > cola.get_size() | cola.is_empty()) { cout << "NULL" << endl; return;}
 
@@ -35,7 +35,7 @@ int main(){
     cola.enqueue(9);
     cola.enqueue(10);
     cola.display();
-    reverse_at_k_2(cola, 3);
+    reverse_at_k_2(cola, 8);
     // cola.display();
 }
 

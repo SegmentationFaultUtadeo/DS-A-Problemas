@@ -13,7 +13,8 @@ Input consists of two space-separated integers, $X$ and $Y$. $X$ is the point on
 
 Output the temperature where both scales are the same. This number must have an absolute or relative error of at most $10^{-6}$. If no such temperature exists, output "IMPOSSIBLE" (without the quotes) instead. If more than one such point exists, output "ALL GOOD" (without the quotes) instead. 
 
-## Limits 
+
+## Limits
 
 
 - $-100 \leq X \leq 100$

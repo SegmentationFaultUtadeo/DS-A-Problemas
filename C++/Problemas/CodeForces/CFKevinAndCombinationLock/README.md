@@ -49,5 +49,10 @@ YES
 
 For the first test case,
 
+
 $$165 \xrightarrow[-33] \ 132 \xrightarrow[-33] \ 99 \xrightarrow[-33]\ 66  \xrightarrow[-33]\ 33  \xrightarrow[-33]\ 0 $$
 
+
+For the second test case,
+
+$$6369 \xrightarrow[-33] \ 6336 \xrightarrow[\text{remove 33}] \ 66 \xrightarrow[-33]\ 33  \xrightarrow[-33]\ 0 $$ 

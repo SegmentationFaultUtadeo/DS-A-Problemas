@@ -47,5 +47,7 @@ YES
 
 #### Note
 
-For the first test case, $165 \xrightarrow[-33] \ 132 \xrightarrow[-33] \ 99 \xrightarrow[-33]\ 66  \xrightarrow[-33]\ 33  \xrightarrow[-33]\ 0 $
+For the first test case,
+
+$$165 \xrightarrow[-33] \ 132 \xrightarrow[-33] \ 99 \xrightarrow[-33]\ 66  \xrightarrow[-33]\ 33  \xrightarrow[-33]\ 0 $$
 

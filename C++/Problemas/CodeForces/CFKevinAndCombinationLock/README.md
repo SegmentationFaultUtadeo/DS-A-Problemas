@@ -56,3 +56,6 @@ $$165 \xrightarrow[-33] \ 132 \xrightarrow[-33] \ 99 \xrightarrow[-33]\ 66  \xri
 For the second test case,
 
 $$6369 \xrightarrow[-33] \ 6336 \xrightarrow[\text{remove 33}] \ 66 \xrightarrow[-33]\ 33  \xrightarrow[-33]\ 0 $$ 
+
+
+For the third test case, it can be proven that, regardless of the operations performed, $666$ cannot be transformed into $0$.

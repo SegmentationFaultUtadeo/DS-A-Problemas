@@ -6,6 +6,8 @@ using namespace std;
 int main(){
 
     int n; cin >> n;
+
+
     string s;
     cin.ignore();
     while (n--){
@@ -16,6 +18,9 @@ int main(){
         else if (s.substr(0, 3) == "190") cout << "?" << endl;
         else cout << "+" << endl;
     }
+
+
+
 
 
     return 0;

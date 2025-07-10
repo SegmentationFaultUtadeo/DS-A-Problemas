@@ -14,7 +14,7 @@ int main(){
             if (n2 > max) max = n2;
             if (n2 < min) min = n2;
         }
-        cout << "Case " << ++i << ": " << min << " " << max << " " << (max - min) << endl << endl;
+        cout << "Case " << ++i << ": " << min << " " << max << " " << (max - min) << endl;
     }
 
 

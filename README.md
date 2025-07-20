@@ -48,6 +48,8 @@ Para organizar cada ejercicio se sugiere utilizar el siguiente orden (este ejemp
 │       └── Etc.
 ```
 
+A continuación, se van a explicar qué colocar en cada directorio
+
 
 --- 
 

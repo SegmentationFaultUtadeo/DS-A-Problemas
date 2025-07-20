@@ -1,5 +1,6 @@
-# Estructuras-De-Datos
-Repositorio que almacena las estructuras de datos en diferentes lenguajes de programación del Semillero de Programación Competitiva de la Universidad Jorge Tadeo Lozano.
+# Algoritmos, Estructuras de Datos y Problemas
+
+Repositorio que almacena el trabajo del Semillero de Programación Competitiva, Segmentation Fault. Contienen problemas de diferentes portales web resueltos, estructuras de datos y algoritmos. Esto con el fin de ser material de estudio y práctica para los miembros. 
 
 
 # Cómo organizar el repositorio 
@@ -12,28 +13,44 @@ El repositorio tiene los siguientes lenguajes
 ├── C++
 ├── Java
 ├── JavaScript
+├── Python
 └── Ruby
 ```
 
 
 Para organizar cada estructura y sus ejercicios se debe realizar de la siguiente manera:
 
-``` text
-├── Lenguaje
-│   ├── LinkedList
-│   │   ├── Ejercicios
-│   │       └── LC1TwoSum
-│   │           └── TwoSum.ext_lenguaje
-│   │           └── README.md
-│   │   └── Implementaciones
-│   │       └── SimpleLinkedList.ext_lenguaje
-│   │       └── README.md
-│   └── README.md
-└── README.md
+```text
+├── C++
+│   ├── Algoritmos
+│   │   ├── BinaryExponentiation
+│   │	│   ├── BinaryExponentiation.cpp
+│   │ 	│   └── README.md
+│   │  	├── ...
+│   │ 	└── etc.
+│   ├── EstructurasDeDatos
+│   │   ├── LinkedList
+│   │	│   ├── SimpleLinkedList.cpp
+│   │  	│   ├── ...
+│   │ 	│   └── README.md
+│   │   ├── ...
+│   │   └── etc.
+│   └── Problemas
+│       ├── CodeForces
+│   	│   ├── BinaryExponentiation.cpp
+│    	│   └── README.md
+│       ├── ...
+│       └── etc.
 ```
 
 
-Esto significa que por cada lenguaje debe haber un directorio por estructura y un `README.md`. Este último archivo debe contener qué versión del lenguaje se está manejando y (si el lenguaje es compilado) cómo se compila, además de información adicional que utilicen para trabajar. Por ejemplo, para C++ el archivo `README.md` deberá ser algo así:
+Es decir, cada lenguaje debe tener 3 directorios:
+
+- `Algoritmos`
+- `EstructurasDeDatos`
+- `Problemas`
+
+
 
 --- 
 

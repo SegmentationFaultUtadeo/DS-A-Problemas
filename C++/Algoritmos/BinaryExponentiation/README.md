@@ -70,7 +70,7 @@ long long res = binpow_r(a, b/2);
 
 Se calcula de forma recursiva $a^{\lfloor b/2 \rfloor}$ y se guarda en `res`. Este valor se va a reutilizar para construir $a^b$ en función de si $b$ es par o impar.
 
-p``` c++
+``` c++
 if (b % 2) return res * res * a;
 ```
 

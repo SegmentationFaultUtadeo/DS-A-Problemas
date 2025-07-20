@@ -23,7 +23,7 @@ The only line of each test case contains a positive integer $x(1 \leq x \leq 10^
 For each test case, output "YES" or "NO" (without quotes) in one line, representing whether Kevin can unlock the combination lock and escape. You can output the answer in any case (upper or lower). For example, the string "yEs", "yes", "Yes", and "YES" will be recognized as positive responses:
 
 
-### Input 
+### Input Sample
 
 ``` text
 5
@@ -34,7 +34,7 @@ For each test case, output "YES" or "NO" (without quotes) in one line, represent
 133333332
 ```
 
-### Output 
+### Output Sample
 
 ``` text
 YES

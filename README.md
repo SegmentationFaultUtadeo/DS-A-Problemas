@@ -18,38 +18,35 @@ El repositorio tiene los siguientes lenguajes
 ```
 
 
-Para organizar cada estructura y sus ejercicios se debe realizar de la siguiente manera:
+Para organizar cada ejercicio se sugiere utilizar el siguiente orden (este ejemplo es con C++, cambiar las extensiones de los archivos y el nombre del directorio por el lenguaje correspondiente):
 
 ```text
 ├── C++
 │   ├── Algoritmos
 │   │   ├── BinaryExponentiation
 │   │	│   ├── BinaryExponentiation.cpp
+│   │  	│   ├── ...
 │   │ 	│   └── README.md
 │   │  	├── ...
-│   │ 	└── etc.
+│   │ 	└── Etc.
 │   ├── EstructurasDeDatos
 │   │   ├── LinkedList
 │   │	│   ├── SimpleLinkedList.cpp
 │   │  	│   ├── ...
 │   │ 	│   └── README.md
 │   │   ├── ...
-│   │   └── etc.
+│   │   └── Etc.
 │   └── Problemas
 │       ├── CodeForces
-│   	│   ├── BinaryExponentiation.cpp
-│    	│   └── README.md
+│   	│   ├── KevinAndCombinationLock
+│       │   │   ├── KevinAndCombinationLock.cpp
+│       │   │	├── ...
+│       │   │   └── README.md
+│       │   ├── ...
+│ 	│   └── Etc.
 │       ├── ...
-│       └── etc.
+│       └── Etc.
 ```
-
-
-Es decir, cada lenguaje debe tener 3 directorios:
-
-- `Algoritmos`
-- `EstructurasDeDatos`
-- `Problemas`
-
 
 
 --- 

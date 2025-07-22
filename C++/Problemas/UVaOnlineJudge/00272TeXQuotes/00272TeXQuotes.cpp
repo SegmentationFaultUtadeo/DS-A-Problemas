@@ -2,17 +2,18 @@
 #define endl "\n"
 using namespace std;
 
+bool quote = true;
 
 int main(){
     string s;
-    while(getline(cin, s)){
-
-        bool first = true;
-        for (unsigned long i = 0; i < s.size(); i++){
-            s.replace
-
+    char c;
+    while(cin.get(c)){
+        if (c == '"'){
+            if (quote) cout << "``";
+            else cout << "''";
+            quote = !quote;
         }
+        else cout << c;
     }
-
     return 0;
 }

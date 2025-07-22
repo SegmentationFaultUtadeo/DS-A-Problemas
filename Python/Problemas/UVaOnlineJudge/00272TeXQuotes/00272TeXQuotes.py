@@ -1,17 +1,13 @@
-while True:
-    try:
-        cadena = input()
-        def find_all(cadena):
-            indexes = []
-            for i in range(len(cadena)):
-                if (cadena[i] == '\"'): indexes.append(i)
-            return indexes
+import sys
 
-        indices = find_all(cadena)
-        for i in range(len(indices)):
-            if (not(i % 2)): cadena = cadena.replace("\"", "``", count=1)
-            else: cadena = cadena.replace("\"", "''", count = 1)
 
-        print(cadena)
-    except EOFError:
-        break
+quote = True
+
+for line in sys.stdin:
+    for char in line:
+        if char == '"':
+            if quote: print("``", end="")
+            else: print("''", end="")
+            quote = not quote
+        else:
+            print(char, end="")

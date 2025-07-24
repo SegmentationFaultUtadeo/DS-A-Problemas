@@ -23,6 +23,11 @@ st.push({new_elem, new_min});
 
 Esto hace:
 
-1. Se tiene que tener una variable `new_elem` que contenga 
+1. Se tiene que tener una variable `new_elem` que contenga un valor, ya sea input o definido.
+2. Después se crea la variable `new_min`.
+3. Si la pila está vacía entonces que `new_min` sea `new_elem`.
+4. Si no, encuentre el mínimo entre `new_elem` y `stack.top().second` y la salida la asigna a `new_min`.
+5. Se hace push al stack una tupla donde el primer elemento sea `new_eleme` y el segundo `new_min`. 
+
 
 

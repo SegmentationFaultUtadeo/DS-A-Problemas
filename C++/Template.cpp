@@ -2,6 +2,7 @@
 using namespace std;
 #define endl "\n"
 typedef long long ll;
+typedef short int si;
 #define fast ios::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr)
 
 int main(){

@@ -105,7 +105,10 @@ For example, if the first place was won by the code with the label 3 with 12 poi
 `Kod03` and `Kod02` have the same number of points, but `Kod03` has more votes from the members of the
 association, so it is better ranked.
 
-#### 
+#### Clarification of the second example:
+
+The president ranked the `Kod05` as the most beautiful, so it won $n = 5$ points.
+
 
 
 

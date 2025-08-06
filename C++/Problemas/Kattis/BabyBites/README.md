@@ -23,6 +23,7 @@ If Arild’s counting might make sense, print the string `“makes sense”`. Ot
 
 ### Sample Output 1
 
+
 ``` text
 makes sense
 ```

@@ -14,10 +14,19 @@ typedef unsigned int ui;
 typedef string str;
 typedef pair<int, int> pii;
 typedef pair<ll, ll> pll;
+typedef vector<ui> vui;
+typedef vector<int> vi;
+typedef vector<ll> vll;
 
 
 int main(){
     fast;
+
+    ui n; cin >> n;
+    vi v;
+    v.resize(n);
+    for (ui i = 0; i < n; ++i) cin >> v[i];
+
 
 
 

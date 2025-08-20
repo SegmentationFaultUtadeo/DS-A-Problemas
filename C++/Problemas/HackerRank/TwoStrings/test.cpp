@@ -12,6 +12,11 @@ void naive(string s1, string s2){
         for (int j = 0; j < sz(s2); ++j)
             if (s1[i] == s2[j]) {common = true; break;}
 
+    // Equivalente a
+    for (char c1 : s1)
+        for (char c2 : s2)
+            if (c1 == c2) {common = true; break;}
+
     if (common) cout << "YES" << endl;
     else cout << "NO" << endl;
 }

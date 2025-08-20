@@ -15,6 +15,7 @@ Please note that there may be some remaining warriors (this could happen if they
 
 ## Input 
 
+
 The first line of the input contains an integer indicating the number of test cases. 
 
 For each test case, there is a single integer, $n$, indicating the number of Etruscan warriors. You can assume that $0 \leq n \leq 10^{18}$.

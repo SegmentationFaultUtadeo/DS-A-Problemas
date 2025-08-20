@@ -15,7 +15,15 @@ string rtrim(const string &);
  */
 
 string twoStrings(string s1, string s2) {
+    string sol = "NO";
+    unordered_map<char, int> um;
 
+    for (char c : s1) if (um.count(c) == 0) um[c]++;
+    for (char c : s2) if (um.count(c) > 0) um[c]++;
+
+    for (auto p : um) if (p.second > 1) sol = "YES";
+
+    return sol;
 }
 
 int main()

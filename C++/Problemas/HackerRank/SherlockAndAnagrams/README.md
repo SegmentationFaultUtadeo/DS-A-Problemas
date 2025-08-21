@@ -9,7 +9,7 @@ Two strings are anagrams of each other if the letters of one string can be rearr
 
 $s = mom$
 
-The list of all anagrammatic pairs is $[m, m], [mo, om]$ at positions $[[0], [2]], [[0, 1], [1, 2]]$ respectively.
+The list of all anagrammatic pairs is $[m, m], [mo, om]$ at positions $[[0], [2]], [[0, 1], [1, 2]]$ respectively.p
 
 ## Function Description 
 
@@ -55,7 +55,7 @@ abcd
 
 #### Explanation 0
 
-The list of all anagrammatic pairs is $[a, a], [ab, baf], [b, b]$ and $[abb, bba]$ at positions $[[0], [3]], [[0, 1], [2, 3]], [[1], [2]]$ and $[[0, 1, 2], [1, 2, 3]]$ respectively.
+The list of all anagrammatic pairs is $[a, a], [ab, ba], [b, b]$ and $[abb, bba]$ at positions $[[0], [3]], [[0, 1], [2, 3]], [[1], [2]]$ and $[[0, 1, 2], [1, 2, 3]]$ respectively.
 
 No anagrammatic pairs exists in the second query as no character repeats.
 

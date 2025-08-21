@@ -3,7 +3,7 @@ using namespace std;
 #define fast ios::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr)
 #define endl "\n"
 #define pb push_back
-#define all(x) (x).begin(). (x).end()
+#define all(x) (x).begin(), (x).end()
 #define sz(x) (int)(x).size()
 
 typedef long long ll;
@@ -14,15 +14,36 @@ typedef unsigned int ui;
 typedef string str;
 typedef pair<int, int> pii;
 typedef pair<ll, ll> pll;
+typedef vector<int> vi;
 
 
 
 
 int main(){
     fast;
+    ui n; cin >> n;
+    vi v;
+    v.resize(n);
+    for (ui i =0 ; i  <n; ++i) cin >> v[i];
+
+
+    // Swap dos números
+    int num = 2;
+    const auto itr = find(all(v), num);
+    auto indx = distance(v.begin(), itr);
+    iter_swap(v.begin() + num, v.begin() + indx);
 
     return 0;
 }
+
+void swap_two_iters(vi vec, int n){
+    const auto itr = find(all(vec), n);
+    auto indx = distance(vec.begin(), itr);
+    iter_swap(vec.begin() + n, itr);
+    iter_swap(vec.begin() + n, vec.begin() + indx);
+
+}
+
 
 /*
 // cp_toolbox.cpp

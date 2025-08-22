@@ -31,7 +31,7 @@ Each of the next $q$ lines contains a string $s$ to analyze.
 
 ## Constraints
 
-- $1 \leq 1 \leq 10$
+- $1 \leq q \leq 10$
 - $2 \leq \text{length of } s \leq 100$
 
 $s$ contains only lowercase letters in the range ascii[a-z].

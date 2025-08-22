@@ -13,6 +13,19 @@ string rtrim(const string &);
  */
 
 int sherlockAndAnagrams(string s) {
+    map<vector<int>, int> m;
+    int total = 0;
+    for (int i = 0; i < (int)s.size(); ++i){
+            vector<int> v(26, 0);
+            for (int j = i; j < (int)s.size(); ++j){
+                v[(int)s[j] - (int)'a']++;
+                m[v]++;
+            }
+    }
+
+    for (auto p : m) total += p.second * (p.second-1) / 2;
+
+    return total;
 
 }
 

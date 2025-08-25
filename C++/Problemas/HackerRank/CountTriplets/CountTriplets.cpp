@@ -7,9 +7,20 @@ string rtrim(const string &);
 vector<string> split(const string &);
 
 // Complete the countTriplets function below.
-long countTriplets(vector<long> arr, long r) {
+long long countTriplets(vector<long> arr, long r) {
+    long long count = 0;
+
+    unordered_map<long long, long long> pairs;
+    unordered_map<long long, long long> triplets;
+
+    for(auto i : arr){
+        count += triplets[i];
+        triplets[i*r] += pairs[i];
+        pairs[i*r]++;
+    }
 
 
+    return count;
 }
 
 int main()

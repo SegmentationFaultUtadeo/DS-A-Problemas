@@ -14,7 +14,6 @@ int main(){
         ll a, b; cin >> a >> b;
 
         vector<int> div;
-        for(int i =)
 
 
 

@@ -1,8 +1,9 @@
 #include "SimpleLinkedList.h"
 
-int get_length(Node* head){
+
+int get_length(Node<int>* head){
     int len {0};
-    Node* iter = head;
+    Node<int>* iter = head;
     while (iter != nullptr){
         len++;
         iter = iter -> next;
@@ -10,11 +11,11 @@ int get_length(Node* head){
     return len;
 }
 
-bool isPalindrome(Node* head){
+bool isPalindrome(Node<int>* head){
     int n {get_length(head)};
     vector<int> arr(n);
     int i{0};
-    Node* iter = head;
+    Node<int>* iter = head;
     while (i < n/2){
         arr[i] = iter -> data;
         i++;
@@ -37,7 +38,7 @@ bool isPalindrome(Node* head){
 
 int main(){
 
-    LinkedList list;
+    LinkedList<int> list;
     list.insert(1);
     list.insert(2);
     list.insert(3);

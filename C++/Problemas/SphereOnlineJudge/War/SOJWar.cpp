@@ -8,7 +8,7 @@ typedef unsigned short int usi;
 int main(){
     fast;
 
-    int S; in >> S;
+    int S; cin >> S;
     ll Q[S], N[S];
     for (int i = 0; i < S; i++)  cin >> Q[i];
     for (int i = 0; i < S; i++)  cin >> N[i];

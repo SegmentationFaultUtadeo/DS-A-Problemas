@@ -152,6 +152,22 @@ using namespace std;
 #define all(x) (x).begin(), (x).end()
 #define sz(x) (int)(x).size()
 
+// Macros para operaciones bitwise
+#define isOn(S, j) (S & (1 << j))
+#define setBit(S, j) (S |= (1 << j))
+#define clearBit(S, j) (S &= ~(1 << j))
+#define toggleBit(S, j) (S ^= (1 << j))
+#define lowBit(S) (S & (-S))
+#define setAll(S, n) (S = (1 << n)-1)
+
+#define modulo(S, N) ((S) & (N-1)) // Retorna S % N, donde N es una potencia de 2
+#define isPowerOfTwo(S) (!(S) & (S-1))
+#define nearestPowerOfTwo(S) (1 << lround(log2(S)))
+#define turnOffLastBit(S) ((S) & (S-1))
+#define turnOnLastZero(S) ((S) | (S+1))
+#define turnOffLastConsecutiveBits(S) ((S) & (S+1))
+#define turnOnLastConsecutiveZeroes(S) ((S) | (S-1))
+
 
 typedef long long ll;
 typedef short int si;
@@ -161,6 +177,8 @@ typedef unsigned int ui;
 typedef string str;
 typedef pair<int, int> pii;
 typedef pair<ll, ll> pll;
+typedef vector<int> vi;
+
 
 const int INFI = INT_MAX;
 const long INFL = LONG_MAX;
@@ -184,7 +202,7 @@ int main(){
 \end{lstlisting}
 
 
-\section{Binary Exponentiation}
+\section{Bitmask y Binarios}
 
 \begin{lstlisting}[style=cppstyle]
   ll binpow(ll a, ll b){
@@ -210,24 +228,8 @@ int main(){
     }
     return res;
   }
-\end{lstlisting}
-
-\section{Swap dos números}
 
 
-\begin{lstlisting}[style=cppstyle]
-void swap_two_iters(vector<int> vec, int n){
-    const auto itr = find(all(vec), n);
-    auto indx = distance(vec.begin(), itr);
-    iter_swap(vec.begin() + n, itr);
-    iter_swap(vec.begin() + n, vec.begin() + indx);
-}
-\end{lstlisting}
-
-
-\section{Bits}
-
-\begin{lstlisting}[style=cppstyle]
   bitset<8> b1; // 00000000
   bitset<8> b2(5); // 00000101
   bitset<8> b3(string("1101")); // 00001101
@@ -249,10 +251,31 @@ void swap_two_iters(vector<int> vec, int n){
   b.to_ulon() // unsigned long
   b.to_ullong() // unsigned long long
   b.to_string() // string
+
+// Obtener los subconjuntos de una mascara en binario
+vector<int> subset_bitmask(int mask){
+    vector<int> subsets;
+    for (int subset = mask; subset; subset = (mask & (subset -1))) subsets.push_back(subset);
+    return subsets;
+}
 \end{lstlisting}
 
+\section{Swap dos números}
 
 
+\begin{lstlisting}[style=cppstyle]
+void swap_two_iters(vector<int> vec, int n){
+    const auto itr = find(all(vec), n);
+    auto indx = distance(vec.begin(), itr);
+    iter_swap(vec.begin() + n, itr);
+    iter_swap(vec.begin() + n, vec.begin() + indx);
+}
+
+int num = 2;
+const auto itr = find(all(v), num);
+auto indx = distance(v.begin(), itr);
+iter_swap(v.begin() + num, v.begin() + indx);
+\end{lstlisting}
 
 
 

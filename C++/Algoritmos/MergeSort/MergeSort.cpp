@@ -2,6 +2,7 @@
 #define endl '\n'
 using namespace std;
 
+int total_swaps = 0;
 
 void merge(vector<int>& arr, int left, int mid, int right){
     /*
@@ -67,14 +68,15 @@ void mergeSort(vector<int>& arr, int left, int right){
     mergeSort(arr, left, mid);
     mergeSort(arr, mid +1, right);
     merge(arr, left, mid, right);
+    ++total_swaps;
 }
 
 
 int main(){
 
-    vector<int> arr = {4, 2, 7, 1};
+    vector<int> arr = {3, 2, 1, 4};
     mergeSort(arr, 0, (int)arr.size()-1);
-    for (auto i : arr) cout << i << " " ;
+    cout << total_swaps << endl;
 
 
 return 0;

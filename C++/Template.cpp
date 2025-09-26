@@ -5,7 +5,23 @@ using namespace std;
 #define pb push_back
 #define all(x) (x).begin(), (x).end()
 #define sz(x) (int)(x).size()
-#define LSOne(S) ((S) & -(S))
+
+// Macros para operaciones bitwise
+#define isOn(S, j) (S & (1 << j))
+#define setBit(S, j) (S |= (1 << j))
+#define clearBit(S, j) (S &= ~(1 << j))
+#define toggleBit(S, j) (S ^= (1 << j))
+#define lowBit(S) (S & (-S))
+#define setAll(S, n) (S = (1 << n)-1)
+
+#define modulo(S, N) ((S) & (N-1)) // Retorna S % N, donde N es una potencia de 2
+#define isPowerOfTwo(S) (!(S) & (S-1))
+#define nearestPowerOfTwo(S) (1 << lround(log2(S)))
+#define turnOffLastBit(S) ((S) & (S-1))
+#define turnOnLastZero(S) ((S) | (S+1))
+#define turnOffLastConsecutiveBits(S) ((S) & (S+1))
+#define turnOnLastConsecutiveZeroes(S) ((S) | (S-1))
+
 
 typedef long long ll;
 typedef short int si;
@@ -34,8 +50,20 @@ int main(){
     auto indx = distance(v.begin(), itr);
     iter_swap(v.begin() + num, v.begin() + indx);
 
+
+
+
     return 0;
 }
+
+
+// Obtener los subconjuntos de una mascara en binario
+vector<int> subset_bitmask(int mask){
+    vector<int> subsets;
+    for (int subset = mask; subset; subset = (mask & (subset -1))) subsets.push_back(subset);
+    return subsets;
+}
+
 
 void swap_two_iters(vi vec, int n){
     const auto itr = find(all(vec), n);

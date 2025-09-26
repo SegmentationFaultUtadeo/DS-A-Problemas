@@ -1,0 +1,263 @@
+\documentclass{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage[hidelinks]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{pdflscape}
+\usepackage{svg}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{listings}
+\usepackage{cancel}
+\usepackage{fancyhdr}
+
+
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+
+
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{theorem}
+\tcolorboxenvironment{theorem}{colback=LightGray}
+
+\declaretheoremstyle[name=Proposition,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proposition}
+\tcolorboxenvironment{proposition}{colback=LightOrange}
+
+\declaretheoremstyle[name=Principle,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{principle}
+\tcolorboxenvironment{principle}{colback=LightGreen}
+
+\newcolumntype{L}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\setstretch{1.2}
+\geometry{
+    textheight=9in,
+    textwidth=5.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+\lstdefinestyle{bashstyle}{
+    language=bash,
+    basicstyle=\ttfamily,
+    backgroundcolor=\color{gray!10},
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!40!black},
+    stringstyle=\color{red},
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    breaklines=true,
+    breakatwhitespace=true,
+    frame=tb,
+    rulecolor=\color{black!70},
+    framerule=0.5pt,
+    tabsize=4,
+    captionpos=b
+}
+
+\lstdefinestyle{javastyle}{
+    language=Java,
+    basicstyle=\ttfamily,
+    backgroundcolor=\color{gray!10},
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!40!black},
+    stringstyle=\color{red},
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    breaklines=true,
+    breakatwhitespace=true,
+    frame=tb,
+    rulecolor=\color{black!70},
+    framerule=0.5pt,
+    tabsize=4,
+    captionpos=b
+}
+
+\lstdefinestyle{pythonstyle}{
+    language=Python,
+    basicstyle=\ttfamily,
+    backgroundcolor=\color{gray!10},
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!40!black},
+    stringstyle=\color{red},
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    breaklines=true,
+    breakatwhitespace=true,
+    frame=tb,
+    rulecolor=\color{black!70},
+    framerule=0.5pt,
+    tabsize=4,
+    captionpos=b
+}
+
+\lstdefinestyle{cppstyle}{
+    language=C++,
+    basicstyle=\ttfamily,
+    backgroundcolor=\color{gray!10},
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!40!black},
+    stringstyle=\color{red},
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    breaklines=true,
+    breakatwhitespace=true,
+    frame=tb,
+    rulecolor=\color{black!70},
+    framerule=0.5pt,
+    tabsize=4,
+    captionpos=b
+}
+
+
+
+\begin{document}
+% ------------------------------------------------------------------------------
+
+\section{Template General}
+
+\begin{lstlisting}[style=cppstyle]
+#include <bits/stdc++.h>
+using namespace std;
+#define fast ios::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr)
+#define endl "\n"
+#define pb push_back
+#define all(x) (x).begin(), (x).end()
+#define sz(x) (int)(x).size()
+
+
+typedef long long ll;
+typedef short int si;
+typedef unsigned long long ull;
+typedef long double ld;
+typedef unsigned int ui;
+typedef string str;
+typedef pair<int, int> pii;
+typedef pair<ll, ll> pll;
+
+const int INFI = INT_MAX;
+const long INFL = LONG_MAX;
+const long long INFLL = LLONG_MAX;
+
+
+
+int main(){
+    fast;
+
+    si n; cin >> n;
+    vector<int> v;
+    v.resize(n);
+    for (int i = 0; i < n; ++i) cin >> v[i];
+
+    cout << fixed << setprecision(10);
+
+    return 0;
+}
+
+\end{lstlisting}
+
+
+\section{Binary Exponentiation}
+
+\begin{lstlisting}[style=cppstyle]
+  ll binpow(ll a, ll b){
+    ll res = 1;
+    ll counter = 0;
+    while (b > 0){
+      bitset<16> binary(b);
+      if ( b& 1 ) res = res * a;
+      a + a * a;
+      counter++;
+      b >>=1;
+    }
+    return res;
+  }
+
+  ll binpowmod(ll a, ll b, ll m){
+    a \%= m;
+    ll res = 1;
+    while ( b > 0 ){
+      if ( b & 1 ) res = res * a \% m;
+      a = a * a \% m;
+      b >>= 1;
+    }
+    return res;
+  }
+\end{lstlisting}
+
+\section{Swap dos números}
+
+
+\begin{lstlisting}[style=cppstyle]
+void swap_two_iters(vector<int> vec, int n){
+    const auto itr = find(all(vec), n);
+    auto indx = distance(vec.begin(), itr);
+    iter_swap(vec.begin() + n, itr);
+    iter_swap(vec.begin() + n, vec.begin() + indx);
+}
+\end{lstlisting}
+
+
+\section{Bits}
+
+\begin{lstlisting}[style=cppstyle]
+  bitset<8> b1; // 00000000
+  bitset<8> b2(5); // 00000101
+  bitset<8> b3(string("1101")); // 00001101
+  bitset<8> b("10110010")
+  b[0] // 0 (least significant bit)
+  b[7] // 1 (most significant bit)
+  b[0] = 1; // Set bit 0 10110011
+  b.set(3); // set bit at index 3 10111011
+  b.reset(1); // reset bit at index 1
+  b.flip(2); // toggle bit at index 2 10111101
+  b.flip();
+
+  b.any() // True if any bit == 1
+  b.none() // true if all bits == 0
+  b.all() // true if all bits == 1
+  b.count() // number of bits == 1
+  b.size() // number of bits in bitset
+
+  b.to_ulon() // unsigned long
+  b.to_ullong() // unsigned long long
+  b.to_string() // string
+\end{lstlisting}
+
+
+
+
+
+
+
+
+
+
+\end{document}

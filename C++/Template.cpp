@@ -5,6 +5,7 @@ using namespace std;
 #define pb push_back
 #define all(x) (x).begin(), (x).end()
 #define sz(x) (int)(x).size()
+#define LSOne(S) ((S) & -(S))
 
 typedef long long ll;
 typedef short int si;

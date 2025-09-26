@@ -5,3 +5,4 @@ tmp/
 *.out
 *.gz
 *.aux
+.auctex-auto/

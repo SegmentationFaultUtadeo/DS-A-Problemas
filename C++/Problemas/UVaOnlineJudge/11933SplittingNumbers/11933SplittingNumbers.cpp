@@ -16,7 +16,7 @@ int main(){
             if (!(i % 2)) a |= j;
             else b |= j;
             n &= ~(j);
-            i++;
+            ++i;
         }
         cout << a << " " << b << endl;
         cin >> n;

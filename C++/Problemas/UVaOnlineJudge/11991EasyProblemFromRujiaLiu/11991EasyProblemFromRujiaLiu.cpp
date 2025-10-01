@@ -22,7 +22,7 @@ int  main (){
                 cout<< AL[v][k-1].second+1 << endl;
             }
             else{
-                cout<<0 << endl;
+                cout<< 0 << endl;
             }
         }
     }

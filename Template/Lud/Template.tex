@@ -1,0 +1,618 @@
+\documentclass{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage[hidelinks]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{pdflscape}
+\usepackage{svg}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{listings}
+\usepackage{cancel}
+\usepackage{fancyhdr}
+
+
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+
+
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{theorem}
+\tcolorboxenvironment{theorem}{colback=LightGray}
+
+\declaretheoremstyle[name=Proposition,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proposition}
+\tcolorboxenvironment{proposition}{colback=LightOrange}
+
+\declaretheoremstyle[name=Principle,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{principle}
+\tcolorboxenvironment{principle}{colback=LightGreen}
+
+\newcolumntype{L}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\setstretch{1.2}
+\geometry{
+    textheight=9in,
+    textwidth=5.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+\lstdefinestyle{bashstyle}{
+    language=bash,
+    basicstyle=\ttfamily,
+    backgroundcolor=\color{gray!10},
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!40!black},
+    stringstyle=\color{red},
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    breaklines=true,
+    breakatwhitespace=true,
+    frame=tb,
+    rulecolor=\color{black!70},
+    framerule=0.5pt,
+    tabsize=4,
+    captionpos=b
+}
+
+\lstdefinestyle{javastyle}{
+    language=Java,
+    basicstyle=\ttfamily,
+    backgroundcolor=\color{gray!10},
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!40!black},
+    stringstyle=\color{red},
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    breaklines=true,
+    breakatwhitespace=true,
+    frame=tb,
+    rulecolor=\color{black!70},
+    framerule=0.5pt,
+    tabsize=4,
+    captionpos=b
+}
+
+\lstdefinestyle{pythonstyle}{
+    language=Python,
+    basicstyle=\ttfamily,
+    backgroundcolor=\color{gray!10},
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!40!black},
+    stringstyle=\color{red},
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    breaklines=true,
+    breakatwhitespace=true,
+    frame=tb,
+    rulecolor=\color{black!70},
+    framerule=0.5pt,
+    tabsize=4,
+    captionpos=b
+}
+
+\lstdefinestyle{cppstyle}{
+    language=C++,
+    basicstyle=\ttfamily,
+    backgroundcolor=\color{gray!10},
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!40!black},
+    stringstyle=\color{red},
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    breaklines=true,
+    breakatwhitespace=true,
+    frame=tb,
+    rulecolor=\color{black!70},
+    framerule=0.5pt,
+    tabsize=4,
+    captionpos=b
+}
+
+% --------------------------------------------------------------------
+% TITLE PAGE
+% --------------------------------------------------------------------
+\title{
+    \vspace{2cm}
+    \HRule{1pt} \\[0.5cm]
+    \textbf{\Huge Plantilla de Programación Competitiva}\\[0.3cm]
+    \HRule{1pt} \\[1.5cm]
+    \LARGE Universidad de Bogotá Jorge Tadeo Lozano \\[0.3cm]
+    \Large Facultad de Ciencias Naturales e Ingeniería\\[0.3cm]
+    \Large Semillero de Programación Competitiva\\[1.5cm]
+    \large \textbf{Maratón Nacional ACIS REDIS 2025}\\[2cm]
+}
+
+\author{
+    \Large Elaborado por: Ludwig Alvarado y Nicolás Leitón
+}
+
+\date{\vspace{1cm} \Large Bogotá D.C., \today}
+
+
+% --------------------------------------------------------------------
+\begin{document}
+
+\maketitle
+\newpage
+
+\tableofcontents
+
+\thispagestyle{empty}
+\newpage
+\setcounter{page}{1}
+
+
+
+
+\section{Leer Input}
+
+\subsection{Python}
+
+\subsubsection{n inicial y luego casos}
+
+\begin{lstlisting}[style=pythonstyle]
+import sys
+inputs = iter(sys.stdin.readlines())
+TC = int (next(inputs))
+for _ in range(TC):
+  print(sum(map(int, next(inputs).split())))
+
+\end{lstlisting}
+
+\begin{lstlisting}
+3
+1 2
+5 7
+6 3
+--- out
+3
+12
+9
+\end{lstlisting}
+
+\subsubsection{Terminar cuando es 0 0}
+
+\begin{lstlisting}[style=pythonstyle]
+import sys
+for line in sys.stdin.readlines():
+  if line=='0 0\n': break
+  print(sum(map(int, line.split())))
+\end{lstlisting}
+
+\begin{lstlisting}
+1 2
+5 7
+6 3
+0 0
+1 1 <- no se procesa
+--- out
+3
+12
+9
+\end{lstlisting}
+
+
+\subsubsection{Enumerar casos hasta EOF}
+
+\begin{lstlisting}[style=pythonstyle]
+
+import  sys
+for c, line in enumerate(sys.stdin.readlines(), 1):
+    print("Case %s: %s\n" % (c, sum(map(int, line.split()))))
+
+\end{lstlisting}
+
+
+\begin{lstlisting}
+1 2
+5 7
+6 3
+--- out
+Case 1: 3
+
+Case 2: 12
+
+Case 3: 9
+
+\end{lstlisting}
+
+\subsubsection{Input matriz nxm}
+
+\begin{lstlisting}[style=pythonstyle]
+
+import sys
+lines = sys.stdin.readlines()
+i= 0
+matrices = []
+
+while i<len(lines):
+  # Leer dimensiones
+  n, m = map(int, lines[i].split())
+  i += 1
+
+  #Leer la matriz de tamano n
+  matrix = [list(map(int, lines[i+j].split())) for j in range(n)]
+  matrices.append(matrix)
+
+  i +=n
+
+\end{lstlisting}
+
+
+
+
+\subsection{C++}
+
+\subsubsection{n inicial y luego casos}
+
+\begin{lstlisting}[style=cppstyle]
+
+int n; cin >> n;
+while(n--){
+  int a, b; cin >> a >> b;
+  cout << (a + b) << endl;
+}
+
+\end{lstlisting}
+
+
+
+\begin{lstlisting}
+3
+1 2
+5 7
+6 3
+--- out
+3
+12
+9
+\end{lstlisting}
+
+
+\subsubsection{Terminar cuando es 0 0}
+
+\begin{lstlisting}[style=cppstyle]
+int a, b;
+while(cin >> a >> b, (a || b))
+  cout << (a + b) << endl;
+
+\end{lstlisting}
+
+\begin{lstlisting}
+1 2
+5 7
+6 3
+0 0
+1 1 <- no se procesa
+--- out
+3
+12
+9
+\end{lstlisting}
+
+\subsubsection{Leer líneas hasta EOF}
+
+\begin{lstlisting}[style=cppstyle]
+string line;
+while(getline(cin, line)){
+  stringstream ss(line);
+  int x, sum = 0;
+  while(ss >> x) sum += x;
+  cout << sum << endl;
+}
+\end{lstlisting}
+
+\begin{lstlisting}
+3 4 5
+10 20
+7 8 9 10
+--- out
+12
+30
+34
+
+\end{lstlisting}
+
+\subsubsection{Leer N líneas (string)}
+
+\begin{lstlisting}[style=cppstyle]
+int N;
+if (!(cin >> N)) return 0;
+cin.ignore();
+for(int i = 0; i < N; ++i){
+  string s;
+  getline(cin, s);
+}
+\end{lstlisting}
+
+
+\subsubsection{Leer vector}
+
+\begin{lstlisting}[style=pythonstyle]
+int n; cin >> n;
+
+vector<int> v(n);
+copy_n(istream_iterator<int>(cin), n, v.begin());
+
+\end{lstlisting}
+
+\section{Output Format}
+
+
+\subsection{Python}
+
+\begin{lstlisting}[style=pythonstyle]
+#Decimals output
+text = "The price is {:.2f} dollars"
+print(txt.format(45))
+# The price is 45.00 dollar
+
+#Use ',' as thousand separator:
+txt = "the universe is {:,} years old "
+print(txt.format(13800000000))
+# The universe is 13,800,000,000 years old
+
+# Convert to percentage format:
+txt ="you scored {:.1%}"
+print(txt.format(0.255)''
+# you scored 25.5%
+
+txt ="you scored {:.0%}"
+print(txt.format(0.255)''
+# you scored 26%
+
+
+#covert number to binary
+
+txt = "The binary version of {0} is {0:b}"
+print(txt.format(5))
+#The binary version of 5 is 101
+
+
+
+\end{lstlisting}
+
+\subsection{C++}
+
+\begin{lstlisting}[style=cppstyle]
+
+vector<int> v = {1, 2, 3, 4, 5};
+copy(v.begin(), v.end(), ostream_iterator<int>(cout));
+// 12345%
+
+double x = 123.456789;
+cout << fixed << setprecision(3);
+cout << "Value: " << x << endl;
+// Value: 123.457
+
+cout << setw(10) << setfill('*') << 42 << endl;
+// **********42
+
+cout << boolalpha << (x > 100) << endl;
+cout << hex << 255 << endl;
+// true
+// ff
+
+vector<vector<int>> mat = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+for(auto &row : mat){
+  for (int i = 0; i < row.size(); ++i)
+    cout << (i ? " " : "") << row[i];
+  cout << endl;
+}
+/*
+1 2 3
+4 5 6
+7 8 9
+*/
+\end{lstlisting}
+
+
+\section{Macros}
+
+\subsection{Python}
+
+\begin{lstlisting}[style=pythonstyle]
+def crear_matriz(n, m, valor =0):
+  return [[valor for _ in range(m)] for _ in range(n)]
+
+def imprimir_matriz(mat):
+  for fila in mat:
+     print(*fila)
+
+n, m = 3, 4
+matriz= crear_matriz(n, m)
+imprimir_matriz(matriz)
+
+"""
+0 0 0 0
+0 0 0 0
+0 0 0 0
+"""
+
+\end{lstlisting}
+
+\subsection{C++}
+
+
+\begin{lstlisting}[style=cppstyle]
+
+#define for0(i, n) for (int i = 0; i < (int)(n); ++i) // base 0 index
+#define for1(i, n) for (int i = 0; i < (int)(n); ++i) // base 1 index
+#define forc(i, l, r) for (int i = (int)(l); i <= (int)(r); ++i) // intervalo cerrado de l a r inclusivo
+#define forr0(i, n) for (int i = (int)(n) - 1; i >= 0 ; --i) // al contrario hasta 0.
+#define forr1(i, n) for (int i = (int)(n) - 1; i > 0; --i) // al contrario hasta 1
+
+\end{lstlisting}
+
+
+\section{Template General}
+
+\begin{lstlisting}[style=cppstyle]
+#include <bits/stdc++.h>
+using namespace std;
+#define fast ios::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr)
+#define endl "\n"
+#define pb push_back
+#define all(x) (x).begin(), (x).end()
+#define sz(x) (int)(x).size()
+
+// Macros para operaciones bitwise
+#define isOn(S, j) (S & (1 << j))
+#define setBit(S, j) (S |= (1 << j))
+#define clearBit(S, j) (S &= ~(1 << j))
+#define toggleBit(S, j) (S ^= (1 << j))
+#define lowBit(S) (S & (-S))
+#define setAll(S, n) (S = (1 << n)-1)
+
+#define modulo(S, N) ((S) & (N-1)) // Retorna S % N, donde N es una potencia de 2
+#define isPowerOfTwo(S) (!(S) & (S-1))
+#define nearestPowerOfTwo(S) (1 << lround(log2(S)))
+#define turnOffLastBit(S) ((S) & (S-1))
+#define turnOnLastZero(S) ((S) | (S+1))
+#define turnOffLastConsecutiveBits(S) ((S) & (S+1))
+#define turnOnLastConsecutiveZeroes(S) ((S) | (S-1))
+
+
+typedef long long ll;
+typedef short int si;
+typedef unsigned long long ull;
+typedef long double ld;
+typedef unsigned int ui;
+typedef string str;
+typedef pair<int, int> pii;
+typedef pair<ll, ll> pll;
+typedef vector<int> vi;
+
+
+const int INFI = INT_MAX;
+const long INFL = LONG_MAX;
+const long long INFLL = LLONG_MAX;
+
+
+
+int main(){
+    fast;
+
+    si n; cin >> n;
+    vector<int> v;
+    v.resize(n);
+    for (int i = 0; i < n; ++i) cin >> v[i];
+
+    cout << fixed << setprecision(10);
+
+    return 0;
+}
+
+\end{lstlisting}
+
+
+\section{Bitmask y Binarios}
+
+\begin{lstlisting}[style=cppstyle]
+  ll binpow(ll a, ll b){
+    ll res = 1;
+    ll counter = 0;
+    while (b > 0){
+      bitset<16> binary(b);
+      if ( b& 1 ) res = res * a;
+      a + a * a;
+      counter++;
+      b >>=1;
+    }
+    return res;
+  }
+
+  ll binpowmod(ll a, ll b, ll m){
+    a \%= m;
+    ll res = 1;
+    while ( b > 0 ){
+      if ( b & 1 ) res = res * a \% m;
+      a = a * a \% m;
+      b >>= 1;
+    }
+    return res;
+  }
+
+
+  bitset<8> b1; // 00000000
+  bitset<8> b2(5); // 00000101
+  bitset<8> b3(string("1101")); // 00001101
+  bitset<8> b("10110010")
+  b[0] // 0 (least significant bit)
+  b[7] // 1 (most significant bit)
+  b[0] = 1; // Set bit 0 10110011
+  b.set(3); // set bit at index 3 10111011
+  b.reset(1); // reset bit at index 1
+  b.flip(2); // toggle bit at index 2 10111101
+  b.flip();
+
+  b.any() // True if any bit == 1
+  b.none() // true if all bits == 0
+  b.all() // true if all bits == 1
+  b.count() // number of bits == 1
+  b.size() // number of bits in bitset
+
+  b.to_ulon() // unsigned long
+  b.to_ullong() // unsigned long long
+  b.to_string() // string
+
+// Obtener los subconjuntos de una mascara en binario
+vector<int> subset_bitmask(int mask){
+    vector<int> subsets;
+    for (int subset = mask; subset; subset = (mask & (subset -1))) subsets.push_back(subset);
+    return subsets;
+}
+\end{lstlisting}
+
+\section{Swap dos números}
+
+
+\begin{lstlisting}[style=cppstyle]
+void swap_two_iters(vector<int> vec, int n){
+    const auto itr = find(all(vec), n);
+    auto indx = distance(vec.begin(), itr);
+    iter_swap(vec.begin() + n, itr);
+    iter_swap(vec.begin() + n, vec.begin() + indx);
+}
+
+int num = 2;
+const auto itr = find(all(v), num);
+auto indx = distance(v.begin(), itr);
+iter_swap(v.begin() + num, v.begin() + indx);
+\end{lstlisting}
+
+
+
+
+
+
+
+\end{document}

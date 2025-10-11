@@ -364,6 +364,10 @@ copy_n(istream_iterator<int>(cin), n, v.begin());
 
 \end{lstlisting}
 
+
+
+
+
 \section{Output Format}
 
 
@@ -463,43 +467,18 @@ imprimir_matriz(matriz)
 
 
 \begin{lstlisting}[style=cppstyle]
-
+#include <bits/stdc++.h>
+using namespace std;
+#define fast ios::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr)
+#define endl '\n'
+#define pb push_back
+#define all(x) (x).begin(), (x).end()
+#define sz(x) (int)(x).size()
 #define for0(i, n) for (int i = 0; i < (int)(n); ++i) // base 0 index
 #define for1(i, n) for (int i = 0; i < (int)(n); ++i) // base 1 index
 #define forc(i, l, r) for (int i = (int)(l); i <= (int)(r); ++i) // intervalo cerrado de l a r inclusivo
 #define forr0(i, n) for (int i = (int)(n) - 1; i >= 0 ; --i) // al contrario hasta 0.
 #define forr1(i, n) for (int i = (int)(n) - 1; i > 0; --i) // al contrario hasta 1
-
-\end{lstlisting}
-
-
-\section{Template General}
-
-\begin{lstlisting}[style=cppstyle]
-#include <bits/stdc++.h>
-using namespace std;
-#define fast ios::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr)
-#define endl "\n"
-#define pb push_back
-#define all(x) (x).begin(), (x).end()
-#define sz(x) (int)(x).size()
-
-// Macros para operaciones bitwise
-#define isOn(S, j) (S & (1 << j))
-#define setBit(S, j) (S |= (1 << j))
-#define clearBit(S, j) (S &= ~(1 << j))
-#define toggleBit(S, j) (S ^= (1 << j))
-#define lowBit(S) (S & (-S))
-#define setAll(S, n) (S = (1 << n)-1)
-
-#define modulo(S, N) ((S) & (N-1)) // Retorna S % N, donde N es una potencia de 2
-#define isPowerOfTwo(S) (!(S) & (S-1))
-#define nearestPowerOfTwo(S) (1 << lround(log2(S)))
-#define turnOffLastBit(S) ((S) & (S-1))
-#define turnOnLastZero(S) ((S) | (S+1))
-#define turnOffLastConsecutiveBits(S) ((S) & (S+1))
-#define turnOnLastConsecutiveZeroes(S) ((S) | (S-1))
-
 
 typedef long long ll;
 typedef short int si;
@@ -516,20 +495,30 @@ const int INFI = INT_MAX;
 const long INFL = LONG_MAX;
 const long long INFLL = LLONG_MAX;
 
+\end{lstlisting}
 
 
-int main(){
-    fast;
+\section{Operaciones Bitwise}
 
-    si n; cin >> n;
-    vector<int> v;
-    v.resize(n);
-    for (int i = 0; i < n; ++i) cin >> v[i];
+\subsection{C++}
 
-    cout << fixed << setprecision(10);
+\begin{lstlisting}[style=cppstyle]
 
-    return 0;
-}
+// Macros para operaciones bitwise
+#define isOn(S, j) (S & (1 << j))
+#define setBit(S, j) (S |= (1 << j))
+#define clearBit(S, j) (S &= ~(1 << j))
+#define toggleBit(S, j) (S ^= (1 << j))
+#define lowBit(S) (S & (-S))
+#define setAll(S, n) (S = (1 << n)-1)
+
+#define modulo(S, N) ((S) & (N-1)) // Retorna S % N, donde N es una potencia de 2
+#define isPowerOfTwo(S) (!(S) & (S-1))
+#define nearestPowerOfTwo(S) (1 << lround(log2(S)))
+#define turnOffLastBit(S) ((S) & (S-1))
+#define turnOnLastZero(S) ((S) | (S+1))
+#define turnOffLastConsecutiveBits(S) ((S) & (S+1))
+#define turnOnLastConsecutiveZeroes(S) ((S) | (S-1))
 
 \end{lstlisting}
 
@@ -610,6 +599,41 @@ iter_swap(v.begin() + num, v.begin() + indx);
 \end{lstlisting}
 
 
+\section{Grafos}
+
+\subsection{C++}
+
+\subsubsection{Leer grafo no dirigido con peso}
+
+\begin{lstlisting}[style=cppstyle]
+int n, m;
+cin >> n >> m;
+
+vector<vector<pair<int,int>>> adj(n + 1); // 1-indexed graph
+
+for (int i = 0; i < m; ++i) {
+  int u, v, w;
+  cin >> u >> v >> w;
+  adj[u].push_back({v, w});
+  adj[v].push_back({u, w}); // Remover si el grafo es dirigido
+}
+\end{lstlisting}
+
+\subsubsection{Leer grafo sin peso}
+
+\begin{lstlisting}[style=cppstyle]
+int n, m;
+cin >> n >> m;
+
+vector<vector<int>> adj(n + 1);
+
+for (int i = 0; i < m; ++i) {
+  int u, v;
+  cin >> u >> v;
+  adj[u].push_back(v);
+  adj[v].push_back(u);
+}
+\end{lstlisting}
 
 
 

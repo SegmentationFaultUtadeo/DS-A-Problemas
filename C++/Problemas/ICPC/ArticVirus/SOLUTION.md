@@ -10,7 +10,9 @@ Where:
 - A and T are simple (base) cases
 - φC means appending C to the end of a virus φ
 - Aφ means prepending A to the beginning of a virus φ  
-- Aφ⁻¹ means prepending A to the beginning of the reverse of a virus φ
+- Aφ⁻¹ means prepending A to the beginning of the reverse of a vi
+
+rus φ
 - Gφ⁻¹C means wrapping the reverse of a virus φ with G at the beginning and C at the end
 
 ## Solution Strategy
@@ -90,3 +92,4 @@ int main() {
     return 0;
 }
 ```
+

@@ -1,0 +1,1256 @@
+\documentclass{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage[hidelinks]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{pdflscape}
+\usepackage{svg}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{listings}
+\usepackage{cancel}
+\usepackage{fancyhdr}
+
+
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+
+
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{theorem}
+\tcolorboxenvironment{theorem}{colback=LightGray}
+
+\declaretheoremstyle[name=Proposition,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proposition}
+\tcolorboxenvironment{proposition}{colback=LightOrange}
+
+\declaretheoremstyle[name=Principle,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{principle}
+\tcolorboxenvironment{principle}{colback=LightGreen}
+
+\newcolumntype{L}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\setstretch{1.2}
+\geometry{
+    textheight=9in,
+    textwidth=5.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+\lstdefinestyle{bashstyle}{
+    language=bash,
+    basicstyle=\ttfamily,
+    backgroundcolor=\color{gray!10},
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!40!black},
+    stringstyle=\color{red},
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    breaklines=true,
+    breakatwhitespace=true,
+    frame=tb,
+    rulecolor=\color{black!70},
+    framerule=0.5pt,
+    tabsize=4,
+    captionpos=b
+}
+
+\lstdefinestyle{javastyle}{
+    language=Java,
+    basicstyle=\ttfamily,
+    backgroundcolor=\color{gray!10},
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!40!black},
+    stringstyle=\color{red},
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    breaklines=true,
+    breakatwhitespace=true,
+    frame=tb,
+    rulecolor=\color{black!70},
+    framerule=0.5pt,
+    tabsize=4,
+    captionpos=b
+}
+
+\lstdefinestyle{pythonstyle}{
+    language=Python,
+    basicstyle=\ttfamily,
+    backgroundcolor=\color{gray!10},
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!40!black},
+    stringstyle=\color{red},
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    breaklines=true,
+    breakatwhitespace=true,
+    frame=tb,
+    rulecolor=\color{black!70},
+    framerule=0.5pt,
+    tabsize=4,
+    captionpos=b
+}
+
+\lstdefinestyle{cppstyle}{
+    language=C++,
+    basicstyle=\ttfamily,
+    backgroundcolor=\color{gray!10},
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!40!black},
+    stringstyle=\color{red},
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    breaklines=true,
+    breakatwhitespace=true,
+    frame=tb,
+    rulecolor=\color{black!70},
+    framerule=0.5pt,
+    tabsize=4,
+    captionpos=b
+}
+
+% --------------------------------------------------------------------
+% TITLE PAGE
+% --------------------------------------------------------------------
+\title{
+    \vspace{2cm}
+    \HRule{1pt} \\[0.5cm]
+    \textbf{\Huge Plantilla de Programación Competitiva}\\[0.3cm]
+    \HRule{1pt} \\[1.5cm]
+    \LARGE Universidad de Bogotá Jorge Tadeo Lozano \\[0.3cm]
+    \Large Facultad de Ciencias Naturales e Ingeniería\\[0.3cm]
+    \Large Semillero de Programación Competitiva\\[1.5cm]
+    \large \textbf{Maratón Nacional ACIS REDIS 2025}\\[2cm]
+}
+
+\author{
+    \Large Elaborado por: Ludwig Alvarado.
+}
+
+\date{\vspace{1cm} \Large Bogotá D.C., \today}
+
+
+% --------------------------------------------------------------------
+\begin{document}
+
+\maketitle
+\newpage
+
+\tableofcontents
+
+\thispagestyle{empty}
+\newpage
+\setcounter{page}{1}
+
+
+
+
+\section{Leer Input}
+
+\subsection{C++}
+
+\subsubsection{n inicial y luego casos}
+
+\begin{lstlisting}[style=cppstyle]
+
+int n; cin >> n;
+while(n--){
+  int a, b; cin >> a >> b;
+  cout << (a + b) << endl;
+}
+
+\end{lstlisting}
+
+
+
+\begin{lstlisting}
+3
+1 2
+5 7
+6 3
+--- out
+3
+12
+9
+\end{lstlisting}
+
+
+\subsubsection{Terminar cuando es 0 0}
+
+\begin{lstlisting}[style=cppstyle]
+int a, b;
+while(cin >> a >> b, (a || b))
+  cout << (a + b) << endl;
+
+\end{lstlisting}
+
+\begin{lstlisting}
+1 2
+5 7
+6 3
+0 0
+1 1 <- no se procesa
+--- out
+3
+12
+9
+\end{lstlisting}
+
+\subsubsection{Leer líneas hasta EOF}
+
+\begin{lstlisting}[style=cppstyle]
+string line;
+while(getline(cin, line)){
+  stringstream ss(line);
+  int x, sum = 0;
+  while(ss >> x) sum += x;
+  cout << sum << endl;
+}
+\end{lstlisting}
+
+\begin{lstlisting}
+3 4 5
+10 20
+7 8 9 10
+--- out
+12
+30
+34
+
+\end{lstlisting}
+
+\subsubsection{Leer N líneas (string)}
+
+\begin{lstlisting}[style=cppstyle]
+int N;
+if (!(cin >> N)) return 0;
+cin.ignore();
+for(int i = 0; i < N; ++i){
+  string s;
+  getline(cin, s);
+}
+\end{lstlisting}
+
+
+\subsubsection{Leer vector}
+
+\begin{lstlisting}[style=cppstyle]
+int n; cin >> n;
+
+vector<int> v(n);
+copy_n(istream_iterator<int>(cin), n, v.begin());
+
+\end{lstlisting}
+
+
+\section{Output Format}
+
+
+\subsection{C++}
+
+\begin{lstlisting}[style=cppstyle]
+
+vector<int> v = {1, 2, 3, 4, 5};
+copy(v.begin(), v.end(), ostream_iterator<int>(cout));
+// 12345%
+
+double x = 123.456789;
+cout << fixed << setprecision(3);
+cout << "Value: " << x << endl;
+// Value: 123.457
+
+cout << setw(10) << setfill('*') << 42 << endl;
+// **********42
+
+cout << boolalpha << (x > 100) << endl;
+cout << hex << 255 << endl;
+// true
+// ff
+
+vector<vector<int>> mat = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+for(auto &row : mat){
+  for (int i = 0; i < row.size(); ++i)
+    cout << (i ? " " : "") << row[i];
+  cout << endl;
+}
+/*
+1 2 3
+4 5 6
+7 8 9
+*/
+\end{lstlisting}
+
+
+\section{Macros}
+
+\subsection{C++}
+
+
+\begin{lstlisting}[style=cppstyle]
+#include <bits/stdc++.h>
+using namespace std;
+#define fast ios::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr)
+
+#define endl '\n'
+
+#define pb push_back
+#define all(x) (x).begin(), (x).end()
+#define sz(x) (int)(x).size()
+#define for0(i, n) for (int i = 0; i < (int)(n); ++i) // base 0 index
+#define for1(i, n) for (int i = 0; i < (int)(n); ++i) // base 1 index
+#define forc(i, l, r) for (int i = (int)(l); i <= (int)(r); ++i) // intervalo cerrado de l a r inclusivo
+#define forr0(i, n) for (int i = (int)(n) - 1; i >= 0 ; --i) // al contrario hasta 0.
+#define forr1(i, n) for (int i = (int)(n) - 1; i > 0; --i) // al contrario hasta 1
+
+typedef long long ll;
+typedef short int si;
+typedef unsigned long long ull;
+typedef long double ld;
+typedef unsigned int ui;
+typedef string str;
+typedef pair<int, int> pii;
+typedef pair<ll, ll> pll;
+typedef vector<int> vi;
+
+
+const int INFI = INT_MAX;
+const long INFL = LONG_MAX;
+const long long INFLL = LLONG_MAX;
+
+\end{lstlisting}
+
+
+\section{Operaciones Bitwise}
+
+\subsection{C++}
+
+\begin{lstlisting}[style=cppstyle]
+
+// Macros para operaciones bitwise
+#define isOn(S, j) (S & (1 << j))
+#define setBit(S, j) (S |= (1 << j))
+#define clearBit(S, j) (S &= ~(1 << j))
+#define toggleBit(S, j) (S ^= (1 << j))
+#define lowBit(S) (S & (-S))
+#define setAll(S, n) (S = (1 << n)-1)
+
+#define modulo(S, N) ((S) & (N-1)) // Retorna S % N, donde N es una potencia de 2
+#define isPowerOfTwo(S) (!(S) & (S-1))
+#define nearestPowerOfTwo(S) (1 << lround(log2(S)))
+#define turnOffLastBit(S) ((S) & (S-1))
+#define turnOnLastZero(S) ((S) | (S+1))
+#define turnOffLastConsecutiveBits(S) ((S) & (S+1))
+#define turnOnLastConsecutiveZeroes(S) ((S) | (S-1))
+
+\end{lstlisting}
+
+
+\section{Bitmask y Binarios con bitset}
+
+\begin{lstlisting}[style=cppstyle]
+  ll binpow(ll a, ll b){
+    ll res = 1;
+    ll counter = 0;
+    while (b > 0){
+      bitset<16> binary(b);
+      if ( b& 1 ) res = res * a;
+      a + a * a;
+      counter++;
+      b >>=1;
+    }
+    return res;
+  }
+
+  ll binpowmod(ll a, ll b, ll m){
+    a \%= m;
+    ll res = 1;
+    while ( b > 0 ){
+      if ( b & 1 ) res = res * a \% m;
+      a = a * a \% m;
+      b >>= 1;
+    }
+    return res;
+  }
+
+
+  bitset<8> b1; // 00000000
+  bitset<8> b2(5); // 00000101
+  bitset<8> b3(string("1101")); // 00001101
+  bitset<8> b("10110010")
+  b[0] // 0 (least significant bit)
+  b[7] // 1 (most significant bit)
+  b[0] = 1; // Set bit 0 10110011
+  b.set(3); // set bit at index 3 10111011
+  b.reset(1); // reset bit at index 1
+  b.flip(2); // toggle bit at index 2 10111101
+  b.flip();
+
+  b.any() // True if any bit == 1
+  b.none() // true if all bits == 0
+  b.all() // true if all bits == 1
+  b.count() // number of bits == 1
+  b.size() // number of bits in bitset
+
+  b.to_ulon() // unsigned long
+  b.to_ullong() // unsigned long long
+  b.to_string() // string
+
+// Obtener los subconjuntos de una mascara en binario
+vector<int> subset_bitmask(int mask){
+    vector<int> subsets;
+    for (int subset = mask; subset; subset = (mask & (subset -1))) subsets.push_back(subset);
+    return subsets;
+}
+\end{lstlisting}
+
+\section{Grafos: DFS, BFS y Dijkstra}
+
+Esta sección contiene implementaciones base y trucos para grafos no dirigidos o dirigidos, con pesos o sin ellos.
+
+\subsection{Representación del Grafo}
+
+\begin{lstlisting}[style=cppstyle]
+// Grafo con N nodos numerados 0..N-1
+int N;
+vector<vector<int>> adj(N); // sin peso
+vector<vector<pair<int,int>>> g(N); // con pesos (v, w)
+
+for(int i=0;i<M;i++){
+    int u,v; cin>>u>>v;
+    adj[u].push_back(v);
+    adj[v].push_back(u); // quitar si es dirigido
+}
+\end{lstlisting}
+
+
+\subsection{DFS (Depth First Search)}
+
+Complejidad: \(O(N + M)\)
+
+\begin{lstlisting}[style=cppstyle]
+vector<vector<int>> adj;
+vector<int> vis;
+
+void dfs(int u){
+    vis[u] = 1;
+    for(int v : adj[u])
+        if(!vis[v])
+            dfs(v);
+}
+
+int main(){
+    int n,m; cin>>n>>m;
+    adj.assign(n,{});
+    vis.assign(n,0);
+    while(m--){
+        int u,v; cin>>u>>v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+    dfs(0); // desde nodo 0
+}
+\end{lstlisting}
+
+\textbf{Trucos:}
+\begin{itemize}
+  \item Útil para contar componentes conexas.
+  \item Para detectar ciclos: pasar padre y verificar si hay arista a nodo visitado distinto del padre.
+  \item Usar iterativo con \lstinline|stack| si hay riesgo de stack overflow.
+\end{itemize}
+
+
+\subsection{BFS (Breadth First Search)}
+
+Complejidad: \(O(N + M)\)
+
+\begin{lstlisting}[style=cppstyle]
+vector<vector<int>> adj;
+vector<int> dist;
+
+void bfs(int s){
+    queue<int> q;
+    dist.assign(adj.size(), -1);
+    dist[s] = 0;
+    q.push(s);
+
+    while(!q.empty()){
+        int u = q.front(); q.pop();
+        for(int v : adj[u])
+            if(dist[v] == -1){
+                dist[v] = dist[u] + 1;
+                q.push(v);
+            }
+    }
+}
+\end{lstlisting}
+
+\textbf{Trucos:}
+\begin{itemize}
+  \item Útil para hallar distancia mínima en grafos no ponderados.
+  \item Para reconstruir camino: mantener vector \lstinline|parent[v]|.
+\end{itemize}
+
+
+\subsection{Dijkstra (Shortest Path con pesos positivos)}
+
+Complejidad: \(O((N + M) \log N)\) con \lstinline|priority_queue|.
+
+\begin{lstlisting}[style=cppstyle]
+vector<vector<pair<int,int>>> g; // (v, w)
+const ll INF = 1e18;
+
+vector<ll> dijkstra(int s){
+    vector<ll> dist(g.size(), INF);
+    priority_queue<pair<ll,int>, vector<pair<ll,int>>, greater<pair<ll,int>>> pq;
+    dist[s] = 0;
+    pq.push({0,s});
+
+    while(!pq.empty()){
+        auto [du, u] = pq.top(); pq.pop();
+        if(du != dist[u]) continue;
+        for(auto [v, w] : g[u]){
+            if(dist[v] > du + w){
+                dist[v] = du + w;
+                pq.push({dist[v], v});
+            }
+        }
+    }
+    return dist;
+}
+\end{lstlisting}
+
+\textbf{Trucos:}
+\begin{itemize}
+  \item Si hay muchas aristas (\(M \approx N^2\)), usar vector de mínimos (\(O(N^2)\)).
+  \item Usar \lstinline|greater<pair<ll,int>> pq;| para min-heap.
+  \item Para camino mínimo: mantener vector \lstinline|parent[v]|.
+\end{itemize}
+
+
+\subsection{Extras y Trucos de Grafos}
+
+\textbf{1. Componentes Conexas:}
+\begin{lstlisting}[style=cppstyle]
+int comp = 0;
+for(int i=0;i<n;i++)
+  if(!vis[i]){ dfs(i); comp++; }
+\end{lstlisting}
+
+\textbf{2. BFS 0–1 (para grafos con pesos 0 y 1):}
+\begin{lstlisting}[style=cppstyle]
+deque<int> dq;
+vector<int> dist(n, 1e9);
+dist[s] = 0;
+dq.push_back(s);
+
+while(!dq.empty()){
+    int u = dq.front(); dq.pop_front();
+    for(auto [v,w]: g[u]){
+        if(dist[v] > dist[u] + w){
+            dist[v] = dist[u] + w;
+            if(w==1) dq.push_back(v);
+            else dq.push_front(v);
+        }
+    }
+}
+\end{lstlisting}
+
+\textbf{3. Detectar Ciclos en Dirigido (Toposort Check):}
+\begin{lstlisting}[style=cppstyle]
+vector<int> indeg(n);
+for(int u=0;u<n;u++)
+  for(int v:adj[u]) indeg[v]++;
+queue<int> q;
+for(int i=0;i<n;i++) if(!indeg[i]) q.push(i);
+int cnt=0;
+while(!q.empty()){
+  int u=q.front(); q.pop(); cnt++;
+  for(int v:adj[u]) if(--indeg[v]==0) q.push(v);
+}
+bool has_cycle = (cnt < n);
+\end{lstlisting}
+
+\textbf{4. BFS multi-source:}
+\begin{lstlisting}[style=cppstyle]
+queue<int> q;
+for(int s: fuentes){
+    dist[s]=0;
+    q.push(s);
+}
+\end{lstlisting}
+
+\textbf{5. Bidirectional BFS (más rápido si inicio y fin conocidos).}
+
+\textbf{6. Usar \lstinline|vector<vector<pair<int,int>>>| si los pesos son necesarios.}
+
+\textbf{7. Reservar memoria antes:} \lstinline|adj.assign(n, {});|
+
+---
+
+\textbf{Resumen de Complejidades:}
+
+\begin{center}
+\begin{tabular}{lcc}
+\hline
+Algoritmo & Complejidad & Uso principal \\
+\hline
+DFS & \(O(N+M)\) & Conectividad, topología, ciclos \\
+BFS & \(O(N+M)\) & Distancias en grafos no ponderados \\
+Dijkstra & \(O((N+M)\log N)\) & Caminos mínimos (pesos positivos) \\
+0–1 BFS & \(O(N+M)\) & Caminos mínimos (pesos 0/1) \\
+TopoSort (Kahn) & \(O(N+M)\) & DAG orden topológico \\
+\hline
+\end{tabular}
+\end{center}
+
+
+
+
+\section{Estructuras de Datos Built-In}
+
+Esta sección contiene las estructuras y algoritmos más útiles de la STL para programación competitiva (C++11).  
+Incluye las operaciones más comunes y su complejidad temporal.
+
+\subsection{Vector (\texttt{std::vector})}
+
+Array dinámico.
+
+\begin{itemize}
+  \item Acceso por índice: \(O(1)\)
+  \item Inserción/Eliminación al final: \(O(1)\) amortizado
+  \item Inserción/Eliminación en medio: \(O(n)\)
+  \item Redimensionar: \(O(n)\)
+\end{itemize}
+
+\begin{lstlisting}[style=cppstyle]
+vector<int> v;
+v.push_back(10);
+v.pop_back();
+v.resize(5);
+v.clear();
+v.reserve(1000); // evita realocaciones
+int x = v.back();
+\end{lstlisting}
+
+
+\\begin{lstlisting}[style=cppstyle]
+set<int> s;
+s.insert(3);
+s.insert(1);
+s.insert(2);
+s.erase(1);
+if(s.find(3) != s.end()) cout << "found\n";
+
+for(int x : s) cout << x << " "; // 2 3
+\end{lstlisting}
+
+\textbf{multiset} permite duplicados y mantiene orden.
+
+\begin{lstlisting}[style=cppstyle]
+multiset<int> ms = {1, 1, 2, 3};
+ms.erase(ms.find(1)); // borra solo una ocurrencia
+\end{lstlisting}
+
+
+\subsection{Map y Multimap (\texttt{std::map}, \texttt{std::multimap})}
+
+Diccionario ordenado por clave.
+
+\begin{itemize}
+  \item Insertar/Eliminar/Buscar: \(O(\log n)\)
+  \item Acceso por clave: \(O(\log n)\)
+\end{itemize}
+
+\begin{lstlisting}[style=cppstyle]
+map<string, int> freq;
+freq["apple"]++;
+freq["banana"] = 3;
+
+for (auto &p : freq)
+  cout << p.first << ": " << p.second << endl;
+\end{lstlisting}
+
+
+\subsection{Unordered Map / Set (\texttt{std::unordered\_map}, \texttt{std::unordered\_set})}
+
+Tablas hash (no ordenadas).
+
+\begin{itemize}
+  \item Inserción/Eliminación/Búsqueda promedio: \(O(1)\)
+  \item Peor caso: \(O(n)\) (colisiones)
+\end{itemize}
+
+\begin{lstlisting}[style=cppstyle]
+unordered_map<string,int> mp;
+mp["dog"] = 5;
+if(mp.count("dog")) cout << mp["dog"];
+\end{lstlisting}
+
+\textbf{Recomendado} para conteos rápidos o lookups cuando el orden no importa.
+
+
+\subsection{Deque (\texttt{std::deque})}
+
+Cola doble: acceso eficiente en ambos extremos.
+
+\begin{itemize}
+  \item push\_front / push\_back: \(O(1)\)
+  \item pop\_front / pop\_back: \(O(1)\)
+  \item Acceso por índice: \(O(1)\)
+\end{itemize}
+
+\begin{lstlisting}[style=cppstyle]
+deque<int> dq;
+dq.push_back(1);
+dq.push_front(2);
+cout << dq.front() << " " << dq.back(); // 2 1
+\end{lstlisting}
+
+
+\subsection{Stack / Queue / Priority Queue}
+
+\textbf{Stack:} LIFO (\(O(1)\) push/pop/top)
+
+\begin{lstlisting}[style=cppstyle]
+stack<int> st;
+st.push(5);
+cout << st.top(); // 5
+st.pop();
+\end{lstlisting}
+
+\textbf{Queue:} FIFO (\(O(1)\) push/pop/front)
+
+\begin{lstlisting}[style=cppstyle]
+queue<int> q;
+q.push(1);
+q.push(2);
+q.pop();
+cout << q.front(); // 2
+\end{lstlisting}
+
+\textbf{Priority Queue:} heap binario (\(O(\log n)\))
+
+\begin{lstlisting}[style=cppstyle]
+priority_queue<int> pq; // max-heap
+pq.push(10);
+pq.push(5);
+cout << pq.top(); // 10
+pq.pop();
+
+priority_queue<int, vector<int>, greater<int>> minpq; // min-heap
+\end{lstlisting}
+
+
+\subsection{Pair y Tuple}
+
+Emparejar valores o agrupar varios tipos.
+
+\begin{lstlisting}[style=cppstyle]
+pair<int, string> p = {1, "abc"};
+auto [x, y] = p;
+
+tuple<int,int,string> t = {1, 2, "hi"};
+auto [a, b, c] = t;
+\end{lstlisting}
+
+
+\subsection{Algoritmos Comunes (\texttt{<algorithm>})}
+
+\begin{itemize}
+  \item \lstinline|sort(all(v))| → \(O(n \log n)\)
+  \item \lstinline|reverse(all(v))| → \(O(n)\)
+  \item \lstinline|binary_search(all(v), x)| → \(O(\log n)\)
+  \item \lstinline|lower_bound(all(v), x)| → \(O(\log n)\)
+  \item \lstinline|max_element(all(v))| → \(O(n)\)
+  \item \lstinline|accumulate(all(v), 0)| → \(O(n)\)
+\end{itemize}
+
+\begin{lstlisting}[style=cppstyle]
+vector<int> v = {3, 1, 4, 2};
+sort(all(v));
+reverse(all(v));
+if(binary_search(all(v), 3)) cout << "found";
+\end{lstlisting}
+
+
+\subsection{Bitset (\texttt{std::bitset<N>})}
+
+Arreglo de bits estático.
+
+\begin{itemize}
+  \item Acceso/Set/Reset: \(O(1)\)
+  \item Operaciones bitwise: \(O(N / \text{word\_size})\)
+\end{itemize}
+
+\begin{lstlisting}[style=cppstyle]
+bitset<8> b("10100110");
+b.set(3);
+b.reset(1);
+b.flip();
+cout << b.count(); // num de bits encendidos
+\end{lstlisting}
+
+
+\subsection{String (\texttt{std::string})}
+
+\begin{itemize}
+  \item Acceso: \(O(1)\)
+  \item Comparar: \(O(\min(n,m))\)
+  \item Substring: \(O(k)\)
+\end{itemize}
+
+\begin{lstlisting}[style=cppstyle]
+string s = "hello world";
+cout << s.substr(0,5);
+reverse(all(s));
+if(s.find("he") != string::npos) cout << "found";
+\end{lstlisting}
+
+
+\subsection{Union-Find / Disjoint Set (DSU)}
+
+Estructura esencial para componentes conectadas o MST.  
+Complejidad amortizada \(O(\alpha(n)) \approx O(1)\).
+
+\begin{lstlisting}[style=cppstyle]
+struct DSU {
+    vector<int> p, sz;
+    DSU(int n): p(n), sz(n,1){ iota(p.begin(), p.end(), 0); }
+    int find(int x){ return p[x]==x ? x : p[x]=find(p[x]); }
+    bool unite(int a, int b){
+        a=find(a); b=find(b);
+        if(a==b) return false;
+        if(sz[a]<sz[b]) swap(a,b);
+        p[b]=a; sz[a]+=sz[b];
+        return true;
+    }
+};
+\end{lstlisting}
+
+
+\subsection{Recomendaciones Finales}
+
+\begin{lstlisting}[style=cppstyle]
+// Siempre incluir
+ios::sync_with_stdio(false);
+cin.tie(nullptr);
+
+// Alias y macros utiles
+using ll = long long;
+using pii = pair<int,int>;
+#define all(x) (x).begin(), (x).end()
+#define rall(x) (x).rbegin(), (x).rend()
+#define sz(x) int((x).size())
+
+// RNG
+mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+\end{lstlisting}
+
+\section{Expresiones Regulares (Regex) en C++}
+
+La biblioteca \lstinline|<regex>| permite realizar coincidencias de patrones en cadenas usando expresiones regulares, útiles para validación, búsqueda y extracción de información.
+
+\subsection{Incluir y estructuras básicas}
+\begin{lstlisting}[style=cppstyle]
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    string s = "abc123xyz";
+    regex re("[0-9]+"); // uno o mas digitos
+    if (regex_search(s, re))
+        cout << "Tiene numeros!\n";
+}
+\end{lstlisting}
+
+\subsection{Principales clases y funciones}
+
+\begin{itemize}
+  \item \lstinline|regex re("pattern");| — Compila un patrón.
+  \item \lstinline|regex_match(str, re)| — Comprueba si \emph{toda} la cadena coincide.
+  \item \lstinline|regex_search(str, re)| — Comprueba si alguna \emph{subcadena} coincide.
+  \item \lstinline|regex_replace(str, re, repl)| — Reemplaza coincidencias por otra cadena.
+  \item \lstinline|sregex_iterator| — Permite recorrer todas las coincidencias.
+\end{itemize}
+
+\subsection{Ejemplos comunes}
+
+\paragraph{1. Coincidencia completa}
+\begin{lstlisting}[style=cppstyle]
+regex re("[a-z]+");
+cout << boolalpha << regex_match("abc", re) << endl; // true
+cout << regex_match("abc123", re) << endl;           // false
+\end{lstlisting}
+
+\paragraph{2. Buscar dentro de una cadena}
+\begin{lstlisting}[style=cppstyle]
+string s = "code123forces";
+regex re("[0-9]+");
+smatch m;
+if (regex_search(s, m, re))
+    cout << "Primer numero: " << m.str() << "\n"; // "123"
+\end{lstlisting}
+
+\paragraph{3. Extraer todas las coincidencias}
+\begin{lstlisting}[style=cppstyle]
+string text = "ID12 AB34 XY99";
+regex re("[A-Z]{2}[0-9]{2}");
+for (sregex_iterator it(text.begin(), text.end(), re), end_it; it != end_it; ++it)
+    cout << it->str() << " "; // ID12 AB34 XY99
+\end{lstlisting}
+
+\paragraph{4. Reemplazar coincidencias}
+\begin{lstlisting}[style=cppstyle]
+string s = "2025-10-17";
+regex re("-"); 
+string out = regex_replace(s, re, "/");
+cout << out << "\n"; // 2025/10/17
+\end{lstlisting}
+
+\subsection{Sintaxis básica de patrones}
+
+\begin{center}
+\begin{tabular}{ll}
+\hline
+Patrón & Significado \\
+\hline
+\lstinline|.| & Cualquier carácter \\
+\lstinline|[abc]| & Uno de a, b, c \\
+\lstinline|[^abc]| & Cualquier excepto a, b, c \\
+\lstinline|[a-z]| & Rango de letras minúsculas \\
+\lstinline|\d| & Dígito (0–9) \\
+\lstinline|\w| & Alfanumérico o \_ \\
+\lstinline|\s| & Espacio, tab, salto de línea \\
+\lstinline|^| & Inicio de cadena \\
+\lstinline|$| & Fin de cadena \\
+\lstinline|a?| & 0 o 1 ocurrencia de a \\
+\lstinline|a*| & 0 o más ocurrencias \\
+\lstinline|a+| & 1 o más ocurrencias \\
+\lstinline|a{3}| & Exactamente 3 veces \\
+\lstinline|a{2,4}| & Entre 2 y 4 veces \\
+\lstinline|(abc)| & Grupo \\
+\lstinline|a|b| & a o b \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Ejemplos útiles en práctica competitiva}
+
+\paragraph{Validar número entero o decimal}
+\begin{lstlisting}[style=cppstyle]
+regex re("^-?[0-9]+(\\.[0-9]+)?$");
+cout << regex_match("-12.34", re); // true
+\end{lstlisting}
+
+\paragraph{Detectar emails simples}
+\begin{lstlisting}[style=cppstyle]
+regex email("[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}");
+cout << regex_match("name@example.com", email); // true
+\end{lstlisting}
+
+\paragraph{Separar palabras por espacios}
+\begin{lstlisting}[style=cppstyle]
+string s = "this is a test";
+regex re("\\s+");
+sregex_token_iterator it(s.begin(), s.end(), re, -1);
+for (; it != sregex_token_iterator(); ++it)
+    cout << *it << "\n";
+\end{lstlisting}
+
+\paragraph{Filtrar líneas que contengan un patrón}
+\begin{lstlisting}[style=cppstyle]
+regex pattern("ERROR");
+string line;
+while(getline(cin, line))
+    if(regex_search(line, pattern))
+        cout << line << "\n";
+\end{lstlisting}
+
+\subsection{Trucos y advertencias}
+
+\begin{itemize}
+  \item Para \textbf{competencias}, preferir \lstinline|string::find| o \lstinline|substr| si el patrón es simple: regex puede ser lento.
+  \item Usar \lstinline|smatch| (para \lstinline|string|) o \lstinline|cmatch| (para C-strings).
+  \item Los backslashes deben duplicarse: \lstinline|"\\d+"| (no \lstinline|"\d+"|).
+  \item \lstinline|regex_constants::icase| hace coincidencias sin distinguir mayúsculas.
+\end{itemize}
+
+\subsection{Ejemplo completo: contar palabras con formato específico}
+\begin{lstlisting}[style=cppstyle]
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    string text = "A1 B22 C333 D44";
+    regex re("[A-Z][0-9]{2,}");
+    int cnt = 0;
+    for(sregex_iterator it(text.begin(), text.end(), re), end_it; it!=end_it; ++it)
+        cnt++;
+    cout << "Coincidencias: " << cnt << "\n"; // 3
+}
+\end{lstlisting}
+
+\subsection{Resumen de usos típicos}
+
+\begin{center}
+\begin{tabular}{ll}
+\hline
+Tarea & Regex típico \\
+\hline
+Número entero & \lstinline|^-?[0-9]+$| \\
+Decimal & \lstinline|^-?[0-9]*\\.?[0-9]+$| \\
+Email simple & \lstinline|[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}| \\
+Solo letras & \lstinline|^[A-Za-z]+$| \\
+Tokenizar por espacios & \lstinline|\\s+| \\
+Buscar palabra específica & \lstinline|\\bword\\b| \\
+\hline
+\end{tabular}
+\end{center}
+
+
+\section{Matemáticas y Teoría de Números}
+
+Conceptos y algoritmos esenciales para resolver problemas de aritmética, combinatoria y teoría de números en programación competitiva.
+
+\subsection{Operaciones Básicas}
+
+\begin{lstlisting}[style=cppstyle]
+ll gcd(ll a, ll b){ return b ? gcd(b, a % b) : a; }
+ll lcm(ll a, ll b){ return a / gcd(a,b) * b; }
+ll mod(ll a, ll m){ return (a % m + m) % m; } // siempre positivo
+\end{lstlisting}
+
+\textbf{Trucos:}
+\begin{itemize}
+  \item Usar \lstinline|__gcd(a,b)| de \lstinline|<algorithm>|.
+  \item Para overflow en multiplicación: usar \lstinline|(__int128)| o reducción modular.
+\end{itemize}
+
+
+\subsection{Aritmética Modular}
+
+\paragraph{Suma, Resta, Multiplicación}
+\begin{lstlisting}[style=cppstyle]
+const ll MOD = 1e9+7;
+ll add(ll a, ll b){ return (a + b) % MOD; }
+ll sub(ll a, ll b){ return (a - b + MOD) % MOD; }
+ll mul(ll a, ll b){ return (a * b) % MOD; }
+\end{lstlisting}
+
+\paragraph{Exponenciación Modular}
+\begin{lstlisting}[style=cppstyle]
+ll modpow(ll a, ll e, ll m){
+    ll res = 1;
+    while(e){
+        if(e & 1) res = res * a % m;
+        a = a * a % m;
+        e >>= 1;
+    }
+    return res;
+}
+\end{lstlisting}
+
+\paragraph{Inverso Modular (cuando \(m\) es primo)}
+\begin{lstlisting}[style=cppstyle]
+// Fermat: a^(m-2) mod m
+ll modinv(ll a, ll m){ return modpow(a, m-2, m); }
+\end{lstlisting}
+
+\paragraph{Inversos del 1..n en O(n)}
+\begin{lstlisting}[style=cppstyle]
+vector<ll> inv(n+1);
+inv[1] = 1;
+for(int i=2; i<=n; i++)
+    inv[i] = MOD - (MOD/i) * inv[MOD % i] % MOD;
+\end{lstlisting}
+
+
+\subsection{Números Primos}
+
+\paragraph{Prueba de primalidad simple}
+\begin{lstlisting}[style=cppstyle]
+bool is_prime(ll n){
+    if(n < 2) return false;
+    for(ll i=2; i*i<=n; i++)
+        if(n % i == 0) return false;
+    return true;
+}
+\end{lstlisting}
+
+\paragraph{Criba de Eratóstenes}
+\begin{lstlisting}[style=cppstyle]
+int N = 1e6;
+vector<int> primes;
+vector<bool> isprime(N+1, true);
+
+void sieve(){
+    isprime[0] = isprime[1] = false;
+    for(int i=2; i*i<=N; i++)
+        if(isprime[i])
+            for(int j=i*i; j<=N; j+=i)
+                isprime[j] = false;
+    for(int i=2; i<=N; i++)
+        if(isprime[i]) primes.push_back(i);
+}
+\end{lstlisting}
+
+\paragraph{Factorización con Criba}
+\begin{lstlisting}[style=cppstyle]
+vector<int> spf(N+1); // smallest prime factor
+
+void sieve_spf(){
+    iota(spf.begin(), spf.end(), 0);
+    for(int i=2; i*i<=N; i++)
+        if(spf[i] == i)
+            for(int j=i*i; j<=N; j+=i)
+                if(spf[j] == j) spf[j] = i;
+}
+
+vector<int> factorize(int n){
+    vector<int> f;
+    while(n > 1){
+        f.push_back(spf[n]);
+        n /= spf[n];
+    }
+    return f;
+}
+\end{lstlisting}
+
+
+\subsection{Combinatoria y Factoriales Modulares}
+
+\paragraph{Precomputar factoriales}
+\begin{lstlisting}[style=cppstyle]
+const int MAXN = 1e6;
+vector<ll> fact(MAXN+1), invfact(MAXN+1);
+
+void init_fact(){
+    fact[0] = 1;
+    for(int i=1;i<=MAXN;i++) fact[i] = fact[i-1]*i % MOD;
+    invfact[MAXN] = modinv(fact[MAXN], MOD);
+    for(int i=MAXN;i>=1;i--) invfact[i-1] = invfact[i]*i % MOD;
+}
+\end{lstlisting}
+
+\paragraph{Combinaciones nCr mod m}
+\begin{lstlisting}[style=cppstyle]
+ll nCr(int n, int r){
+    if(r<0 || r>n) return 0;
+    return fact[n] * invfact[r] % MOD * invfact[n-r] % MOD;
+}
+\end{lstlisting}
+
+\textbf{Truco:}  
+Para \(n \le 10^6\), precomputar factoriales; para \(n\) grande pero \(r\) pequeño, usar fórmula multiplicativa.
+
+
+\subsection{Algoritmos Numéricos Clásicos}
+
+\paragraph{MCD extendido}
+\begin{lstlisting}[style=cppstyle]
+ll extgcd(ll a, ll b, ll &x, ll &y){
+    if(b == 0){ x = 1; y = 0; return a; }
+    ll x1, y1;
+    ll g = extgcd(b, a % b, x1, y1);
+    x = y1;
+    y = x1 - y1 * (a / b);
+    return g;
+}
+\end{lstlisting}
+
+\paragraph{Solución de Congruencia Lineal \(a x \equiv b \pmod{m}\)}
+\begin{lstlisting}[style=cppstyle]
+ll solve_congruence(ll a, ll b, ll m){
+    ll x, y;
+    ll g = extgcd(a, m, x, y);
+    if(b % g) return -1; // no solution
+    x = (x * (b/g)) % m;
+    return (x + m) % m;
+}
+\end{lstlisting}
+
+\paragraph{Criba para funciones aritméticas (\(\phi\))}
+\begin{lstlisting}[style=cppstyle]
+vector<int> phi(N+1);
+void sieve_phi(){
+    for(int i=0;i<=N;i++) phi[i]=i;
+    for(int i=2;i<=N;i++)
+        if(phi[i]==i)
+            for(int j=i;j<=N;j+=i)
+                phi[j]-=phi[j]/i;
+}
+\end{lstlisting}
+
+\paragraph{Conteo de divisores y suma de divisores}
+\begin{lstlisting}[style=cppstyle]
+int num_div(int n){
+    int cnt=1;
+    for(int i=2, c;i*i<=n;i++){
+        c=0;
+        while(n%i==0) n/=i, c++;
+        cnt *= (c+1);
+    }
+    if(n>1) cnt*=2;
+    return cnt;
+}
+\end{lstlisting}
+
+
+\subsection{Trucos y Consejos}
+
+\begin{itemize}
+  \item \textbf{MODs comunes:} \(10^9+7\), \(998244353\).
+  \item Siempre usar \lstinline|(a * 1LL * b) % MOD| para evitar overflow.
+  \item Para \textbf{coprimos grandes}, el inverso modular existe.
+  \item Para \textbf{conteo combinatorio}, usar logaritmos o Lucas si \(n\) es muy grande.
+  \item \textbf{Euler’s Totient:} \(\phi(n)\) = cantidad de números \(\le n\) coprimos con \(n\).
+  \item \textbf{Exponenciación rápida} = base para muchos algoritmos (potencias, inversos, etc.).
+\end{itemize}
+
+
+\subsection{Resumen de Complejidades}
+
+\begin{center}
+\begin{tabular}{lcc}
+\hline
+Algoritmo & Complejidad & Descripción \\
+\hline
+Criba Eratóstenes & \(O(n \log\log n)\) & Todos los primos hasta \(n\) \\
+Factorización (con SPF) & \(O(\log n)\) & Usando preprocesamiento \\
+Exp. Modular & \(O(\log e)\) & Potencia rápida \\
+Inversos 1..n & \(O(n)\) & Todos los inversos mod primo \\
+nCr con factoriales & \(O(1)\) & Tras precomputar factoriales \\
+\hline
+\end{tabular}
+\end{center}
+
+
+
+
+\end{document}

@@ -1,0 +1,610 @@
+\documentclass{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage[hidelinks]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{pdflscape}
+\usepackage{svg}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{listings}
+\usepackage{cancel}
+\usepackage{fancyhdr}
+
+
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+
+
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{theorem}
+\tcolorboxenvironment{theorem}{colback=LightGray}
+
+\declaretheoremstyle[name=Proposition,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proposition}
+\tcolorboxenvironment{proposition}{colback=LightOrange}
+
+\declaretheoremstyle[name=Principle,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{principle}
+\tcolorboxenvironment{principle}{colback=LightGreen}
+
+\newcolumntype{L}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\setstretch{1.2}
+\geometry{
+    textheight=9in,
+    textwidth=5.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+\lstdefinestyle{pythonstyle}{
+    language=Python,
+    basicstyle=\ttfamily,
+    backgroundcolor=\color{gray!10},
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!40!black},
+    stringstyle=\color{red},
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    breaklines=true,
+    breakatwhitespace=true,
+    frame=tb,
+    rulecolor=\color{black!70},
+    framerule=0.5pt,
+    tabsize=4,
+    captionpos=b
+}
+
+% --------------------------------------------------------------------
+% TITLE PAGE
+% --------------------------------------------------------------------
+\title{
+    \vspace{2cm}
+    \HRule{1pt} \\[0.5cm]
+    \textbf{\Huge Plantilla de Programación Competitiva - Python}\\[0.3cm]
+    \HRule{1pt} \\[1.5cm]
+    \LARGE Universidad de Bogotá Jorge Tadeo Lozano \\[0.3cm]
+    \Large Facultad de Ciencias Naturales e Ingeniería\\[0.3cm]
+    \Large Semillero de Programación Competitiva\\[1.5cm]
+    \large \textbf{Maratón Nacional ACIS REDIS 2025}\\[2cm]
+}
+
+\author{
+    \Large Elaborado por: Nicolás Leitón
+}
+
+\date{\vspace{1cm} \Large Bogotá D.C., \today}
+
+
+% --------------------------------------------------------------------
+\begin{document}
+
+\maketitle
+\newpage
+
+\tableofcontents
+
+\thispagestyle{empty}
+\newpage
+\setcounter{page}{1}
+
+
+
+
+\section{Leer Input}
+
+\subsection{n inicial y luego casos}
+
+\begin{lstlisting}[style=pythonstyle]
+import sys
+inputs = iter(sys.stdin.readlines())
+TC = int (next(inputs))
+for _ in range(TC):
+  print(sum(map(int, next(inputs).split())))
+
+\end{lstlisting}
+
+\begin{lstlisting}
+3
+1 2
+5 7
+6 3
+--- out
+3
+12
+9
+\end{lstlisting}
+
+\subsection{Terminar cuando es 0 0}
+
+\begin{lstlisting}[style=pythonstyle]
+import sys
+for line in sys.stdin.readlines():
+  if line=='0 0\n': break
+  print(sum(map(int, line.split())))
+\end{lstlisting}
+
+\begin{lstlisting}
+1 2
+5 7
+6 3
+0 0
+1 1 <- no se procesa
+--- out
+3
+12
+9
+\end{lstlisting}
+
+
+\subsection{Enumerar casos hasta EOF}
+
+\begin{lstlisting}[style=pythonstyle]
+
+import  sys
+for c, line in enumerate(sys.stdin.readlines(), 1):
+    print("Case %s: %s\n" % (c, sum(map(int, line.split()))))
+
+\end{lstlisting}
+
+
+\begin{lstlisting}
+1 2
+5 7
+6 3
+--- out
+Case 1: 3
+
+Case 2: 12
+
+Case 3: 9
+
+\end{lstlisting}
+
+\subsection{Input matriz nxm}
+
+\begin{lstlisting}[style=pythonstyle]
+
+import sys
+lines = sys.stdin.readlines()
+i= 0
+matrices = []
+
+while i<len(lines):
+  # Leer dimensiones
+  n, m = map(int, lines[i].split())
+  i += 1
+
+  #Leer la matriz de tamano n
+  matrix = [list(map(int, lines[i+j].split())) for j in range(n)]
+  matrices.append(matrix)
+
+  i +=n
+
+\end{lstlisting}
+
+
+
+
+\section{Output Format}
+
+\begin{lstlisting}[style=pythonstyle]
+#Decimals output
+text = "The price is {:.2f} dollars"
+print(txt.format(45))
+# The price is 45.00 dollar
+
+#Use ',' as thousand separator:
+txt = "the universe is {:,} years old "
+print(txt.format(13800000000))
+# The universe is 13,800,000,000 years old
+
+# Convert to percentage format:
+txt ="you scored {:.1%}"
+print(txt.format(0.255)''
+# you scored 25.5%
+
+txt ="you scored {:.0%}"
+print(txt.format(0.255)''
+# you scored 26%
+
+
+#covert number to binary
+
+txt = "The binary version of {0} is {0:b}"
+print(txt.format(5))
+#The binary version of 5 is 101
+
+
+
+\end{lstlisting}
+
+
+\section{Macros}
+
+\begin{lstlisting}[style=pythonstyle]
+def crear_matriz(n, m, valor =0):
+  return [[valor for _ in range(m)] for _ in range(n)]
+
+def imprimir_matriz(mat):
+  for fila in mat:
+     print(*fila)
+
+n, m = 3, 4
+matriz= crear_matriz(n, m)
+imprimir_matriz(matriz)
+
+"""
+0 0 0 0
+0 0 0 0
+0 0 0 0
+"""
+
+\end{lstlisting}
+
+
+\section{Estructuras de Datos Built-In}
+
+Esta sección contiene las estructuras de datos más útiles de Python para programación competitiva.
+
+\subsection{Collections - Deque}
+
+\begin{lstlisting}[style=pythonstyle]
+from collections import deque
+
+dq = deque([1, 2, 3])
+dq.append(4)       # [1, 2, 3, 4]
+dq.appendleft(0)   # [0, 1, 2, 3, 4]
+dq.popleft()       # -> 0
+\end{lstlisting}
+
+\subsection{Heapq - Priority Queue}
+
+\begin{lstlisting}[style=pythonstyle]
+import heapq
+
+h = []
+heapq.heappush(h, 3)
+heapq.heappush(h, 1)
+heapq.heappush(h, 5)
+
+print(heapq.heappop(h))  # 1 (menor elemento)
+
+# Max heap:
+h = []
+heapq.heappush(h, -3)
+heapq.heappush(h, -1)
+heapq.heappush(h, -5)
+print(-heapq.heappop(h)) # 5 (mayor)
+\end{lstlisting}
+
+\subsection{DefaultDict - Grafos}
+
+\begin{lstlisting}[style=pythonstyle]
+from collections import defaultdict
+#Representar grafos con listas de adyacencia.
+g = defaultdict(list)
+n, m = 5, 6 #Nodos, aristas
+edges = [(1,2), (1,3), (2,4), (3,4), (4,5), (5,1)]
+
+for u, v in edges:
+    g[u].append(v)
+    g[v].append(u)  # si es no dirigido
+\end{lstlisting}
+
+\subsection{Counter - Frecuencias}
+
+\begin{lstlisting}[style=pythonstyle]
+from collections import Counter
+#Cuenta frecuencias mas rapido
+cnt = Counter([1,2,2,3,3,3])
+print(cnt[2])       # 2
+print(cnt.most_common(1))  # [(3, 3)]
+\end{lstlisting}
+
+\subsection{Bisect - Búsqueda Binaria}
+
+\begin{lstlisting}[style=pythonstyle]
+import bisect
+#Insercion en lista ordenada
+arr = [1, 3, 3, 5, 8]
+
+print(bisect.bisect_left(arr, 3))   # -> 1
+print(bisect.bisect_right(arr, 3))  # -> 3
+
+#Cuantos elemento hay entre L y R
+arr = [1, 2, 4, 4, 5, 7, 9]
+L, R = 4, 7
+left = bisect.bisect_left(arr, L)
+right = bisect.bisect_right(arr, R)
+print(right - left)  # 4 elementos en el rango [4,7]
+\end{lstlisting}
+
+
+\section{Algoritmos}
+
+\subsection{Two Sum}
+
+\begin{lstlisting}[style=pythonstyle]
+#La funcion intenta determinar si en el arreglo a (de tamano n) 
+#existen dos numeros cuya suma sea igual a k.
+def isPairSum(a, n, k):
+	global x, y
+	i, j = 0, n - 1
+	while i < j:
+		if a[i] + a[j] == k:
+			x, y = i, j
+			return 1
+		elif a[i] + a[j] > k:
+			j = j - 1
+		else:
+			i = i + 1
+	return 0
+\end{lstlisting}
+
+\subsection{Sliding Window - Suma Mínima}
+
+\begin{lstlisting}[style=pythonstyle]
+# Halla la suma minima de un subarreglo de k elementos en un array,
+#  y devuelve los indices donde empieza y termina dicho subarreglo.
+for _ in range(int(input())):
+	n, k = map(int, input().split())
+	arr = list(map(int, input().split()))
+	cursum = res_ind = 0
+	# cursum = sum(x for x in arr[:k])
+	for i in range(k):
+		cursum += arr[i]
+	minsum = cursum
+	for i in range(k, n):
+		cursum = cursum + arr[i] - arr[i - k] #Deslizar ventana
+		if cursum < minsum:
+			minsum = cursum
+			res_ind = i - k + 1
+	print(res_ind, res_ind + k - 1)
+
+'''
+#----INPUT----
+
+1
+7 3
+3 7 90 20 10 50 40
+
+#----OUTPUT----
+
+3 5
+'''
+\end{lstlisting}
+
+
+\section{Grafos: Dijkstra}
+
+\subsection{Dijkstra - Camino más corto}
+
+Complejidad: \(O((N + M) \log N)\) con heapq.
+
+\begin{lstlisting}[style=pythonstyle]
+from heapq import heappush, heappop
+import math
+
+def dijkstra(graph, start):
+    dist = {u: math.inf for u in graph}
+    dist[start] = 0
+    pq = [(0, start)]
+    while pq:
+        d, u = heappop(pq)
+        if d > dist[u]: continue
+        for v, w in graph[u]:
+            if dist[v] > d + w:
+                dist[v] = d + w
+                heappush(pq, (dist[v], v))
+    return dist
+
+# Ejemplo de uso
+graph = {
+    1: [(2, 4), (3, 1)],
+    2: [(3, 2), (4, 5)],
+    3: [(4, 8)],
+    4: []
+}
+#Distancias minimas desde start a cada nodo
+distancias = dijkstra(graph, 1)
+print(distancias) #{1: 0, 2: 3, 3: 1, 4: 8}
+\end{lstlisting}
+
+\textbf{Trucos:}
+\begin{itemize}
+  \item Usar heapq para min-heap eficiente.
+  \item Para max-heap, negar los valores.
+  \item Mantener diccionario de padres para reconstruir camino.
+\end{itemize}
+
+
+\section{Template Completo - Template.py}
+
+Este es el template completo que incluye utilidades comunes para programación competitiva:
+
+\begin{lstlisting}[style=pythonstyle]
+
+# PRINT ARRAY WITHOUT [,,,]
+#print(*arr)
+
+
+#La funcion intenta determinar si en el arreglo a (de tamano n) 
+#existen dos numeros cuya suma sea igual a k.
+def isPairSum(a, n, k):
+	global x, y
+	i, j = 0, n - 1
+	while i < j:
+		if a[i] + a[j] == k:
+			x, y = i, j
+			return 1
+		elif a[i] + a[j] > k:
+			j = j - 1
+		else:
+			i = i + 1
+	return 0
+
+
+# Halla la suma minima de un subarreglo de k elementos en un array,
+#  y devuelve los indices donde empieza y termina dicho subarreglo.
+for _ in range(int(input())):
+	n, k = map(int, input().split())
+	arr = list(map(int, input().split()))
+	cursum = res_ind = 0
+	# cursum = sum(x for x in arr[:k])
+	for i in range(k):
+		cursum += arr[i]
+	minsum = cursum
+	for i in range(k, n):
+		cursum = cursum + arr[i] - arr[i - k] #Deslizar ventana
+		if cursum < minsum:
+			minsum = cursum
+			res_ind = i - k + 1
+	print(res_ind, res_ind + k - 1)
+
+'''
+#----INPUT----
+
+1
+7 3
+3 7 90 20 10 50 40
+
+#----OUTPUT----
+
+3 5
+'''
+
+
+
+
+'''
+COLLECTIONS PYTHON
+'''
+
+from collections import deque
+
+dq = deque([1, 2, 3])
+dq.append(4)       # [1, 2, 3, 4]
+dq.appendleft(0)   # [0, 1, 2, 3, 4]
+dq.popleft()       # -> 0
+
+
+
+import heapq
+
+h = []
+heapq.heappush(h, 3)
+heapq.heappush(h, 1)
+heapq.heappush(h, 5)
+
+print(heapq.heappop(h))  # 1 (menor elemento)
+
+# Max heap:
+h = []
+heapq.heappush(h, -3)
+heapq.heappush(h, -1)
+heapq.heappush(h, -5)
+print(-heapq.heappop(h)) # 5 (mayor)
+
+
+
+
+from collections import defaultdict
+#Representar grafos con listas de adyacencia.
+g = defaultdict(list)
+n, m = 5, 6 #Nodos, aristas
+edges = [(1,2), (1,3), (2,4), (3,4), (4,5), (5,1)]
+
+for u, v in edges:
+    g[u].append(v)
+    g[v].append(u)  # si es no dirigido
+
+
+from collections import Counter
+#Cuenta frecuencias mas rapido
+cnt = Counter([1,2,2,3,3,3])
+print(cnt[2])       # 2
+print(cnt.most_common(1))  # [(3, 3)]
+
+
+
+import bisect
+#Insercion en lista ordenada
+arr = [1, 3, 3, 5, 8]
+
+print(bisect.bisect_left(arr, 3))   # -> 1
+print(bisect.bisect_right(arr, 3))  # -> 3
+
+#Cuantos elemento hay entre L y R
+arr = [1, 2, 4, 4, 5, 7, 9]
+L, R = 4, 7
+left = bisect.bisect_left(arr, L)
+right = bisect.bisect_right(arr, R)
+print(right - left)  # 4 elementos en el rango [4,7]
+
+
+
+'''Djistra'''
+from heapq import heappush, heappop
+import math
+
+def dijkstra(graph, start):
+    dist = {u: math.inf for u in graph}
+    dist[start] = 0
+    pq = [(0, start)]
+    while pq:
+        d, u = heappop(pq)
+        if d > dist[u]: continue
+        for v, w in graph[u]:
+            if dist[v] > d + w:
+                dist[v] = d + w
+                heappush(pq, (dist[v], v))
+    return dist
+graph = {
+    1: [(2, 4), (3, 1)],
+    2: [(3, 2), (4, 5)],
+    3: [(4, 8)],
+    4: []
+}
+#Distancias minimas desde start a cada nodo
+distancias = dijkstra(graph, 1)
+print(distancias) #{1: 0, 2: 3, 3: 1, 4: 8}
+
+\end{lstlisting}
+
+
+\section{Consejos Finales}
+
+\begin{itemize}
+  \item Usar \texttt{sys.stdin.readlines()} para lectura rápida.
+  \item Preferir list comprehensions para mejor rendimiento.
+  \item Usar \texttt{collections} para estructuras de datos eficientes.
+  \item Familiarizarse con \texttt{heapq}, \texttt{bisect} y \texttt{itertools}.
+  \item Para problemas de grafos, considerar usar diccionarios de adyacencia.
+\end{itemize}
+
+\end{document}

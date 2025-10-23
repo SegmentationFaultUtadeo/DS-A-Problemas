@@ -270,9 +270,6 @@ copy_n(istream_iterator<int>(cin), n, v.begin());
 \end{lstlisting}
 
 
-
-
-
 \section{Output Format}
 
 
@@ -320,7 +317,9 @@ for(auto &row : mat){
 #include <bits/stdc++.h>
 using namespace std;
 #define fast ios::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr)
+
 #define endl '\n'
+
 #define pb push_back
 #define all(x) (x).begin(), (x).end()
 #define sz(x) (int)(x).size()
@@ -373,7 +372,7 @@ const long long INFLL = LLONG_MAX;
 \end{lstlisting}
 
 
-\section{Bitmask y Binarios}
+\section{Bitmask y Binarios con bitset}
 
 \begin{lstlisting}[style=cppstyle]
   ll binpow(ll a, ll b){
@@ -430,24 +429,6 @@ vector<int> subset_bitmask(int mask){
     return subsets;
 }
 \end{lstlisting}
-
-\section{Swap dos números}
-
-
-\begin{lstlisting}[style=cppstyle]
-void swap_two_iters(vector<int> vec, int n){
-    const auto itr = find(all(vec), n);
-    auto indx = distance(vec.begin(), itr);
-    iter_swap(vec.begin() + n, itr);
-    iter_swap(vec.begin() + n, vec.begin() + indx);
-}
-
-int num = 2;
-const auto itr = find(all(v), num);
-auto indx = distance(v.begin(), itr);
-iter_swap(v.begin() + num, v.begin() + indx);
-\end{lstlisting}
-
 
 \section{Grafos: DFS, BFS y Dijkstra}
 
@@ -679,16 +660,7 @@ int x = v.back();
 \end{lstlisting}
 
 
-\subsection{Set y Multiset (\texttt{std::set}, \texttt{std::multiset})}
-
-Árbol balanceado (Red-Black Tree).
-
-\begin{itemize}
-  \item Insertar/Eliminar/Buscar: \(O(\log n)\)
-  \item lower\_bound / upper\_bound: \(O(\log n)\)
-\end{itemize}
-
-\begin{lstlisting}[style=cppstyle]
+\\begin{lstlisting}[style=cppstyle]
 set<int> s;
 s.insert(3);
 s.insert(1);

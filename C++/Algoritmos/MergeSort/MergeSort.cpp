@@ -16,7 +16,7 @@ void merge(vector<int>& arr, int left, int mid, int right){
     int n1 = mid - left + 1; // Tamaño del array de la izquierda
     int n2 = right - mid; // Tamaño del array de la derecha
 
-    vector<int> L(n1), R(n2); // Declaración de tamaños para arrays dinámicas, visite https://github.com/stevenhalim/cpbook-code/blob/master/ch2/lineards/resizeable_array.cpp para más info
+    vector<int> L(n1, 0), R(n2, 0); // Declaración de tamaños para arrays dinámicas, visite https://github.com/stevenhalim/cpbook-code/blob/master/ch2/lineards/resizeable_array.cpp para más info
 
     // Copiar datos del vector original a los otros vectores de la izquierda y la derecha. Note bien cómo se definen los rangos de los índices.
     for (int i = 0; i < n1; ++i) L[i] = arr[left + i];

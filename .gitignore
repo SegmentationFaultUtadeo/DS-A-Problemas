@@ -7,3 +7,8 @@ tmp/
 *.aux
 .auctex-auto/
 *.toc
+
+# Archivos de prueba
+in
+out
+ans

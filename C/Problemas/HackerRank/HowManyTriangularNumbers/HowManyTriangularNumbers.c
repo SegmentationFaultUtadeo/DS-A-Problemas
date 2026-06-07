@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <tgmath.h>
+#include <string.h>
 #define ull unsigned long long int
 #define ld long double
 
@@ -16,9 +17,19 @@ int main(){
     ull a, b;
     
     while (scanf("%llu %llu", &a, &b) && (a|b)){
-        a = bashkara(a, true);
-        b = bashkara(b, false);
-        printf("%llu\n", b-a+1);
+        if (a == b){
+            ull new_b = bashkara(b, false);
+            new_b = (new_b*(new_b + 1))/2;
+            if (new_b == b) printf("1\n");
+            else printf("0\n");
+        } else {
+            a = bashkara(a, true);
+            b = bashkara(b, false);
+            printf("%llu\n", b-a+1);            
+        }
     }
     return 0;
 }
+
+
+
